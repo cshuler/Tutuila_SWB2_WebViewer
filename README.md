@@ -12,11 +12,20 @@ npm i
 cd into Client/
 npm i 
 
-to start server, in root
+to start server on local storage
 npm run dev 
 
-to see project on local, 
-yarn start
+
+# Making Edits
+
+Do edits on the dev branch
+test it
+when finished and no errors, go to master branch and then merge to dev
+save and push to github
+lastly, save and push to heroku
+
+open up with
+heroku open
 
 
 
