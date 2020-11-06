@@ -1,0 +1,64 @@
+# Base configuration
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+markdown: kramdown
+highlighter: rouge
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
+# Title
+name: Tutuila_SWB2_WebViewer Docs
+subtitle: Documentation for building and using the American Samoa Groundwater Recharge Tool
+
+# When using this template with a project page set the baseurl to '/project-name'
+# For user/organization pages set this to an empty string
+# When working locally use jekyll serve --baseurl '' so that you can view everything at localhost:4000
+# See http://jekyllrb.com/docs/github-pages/ for more info
+#baseurl: ''
+baseurl: '/Tutuila_SWB2_WebViewer'
+
+# Author/Organization info to be displayed in the templates
+author:
+  name: cshuler
+  url: https://cshuler.github.io/Tutuila_SWB2_WebViewer/
+
+# Point the logo URL at a file in your repo or hosted elsewhere by your organization
+logourl:
+logoalt:
+
+# Navigation
+# List links that should appear in the site sidebar here
+navigation:
+- text: Home
+  url: ./
+  internal: true
+- text: Project Background
+  url: project_background/
+  internal: true
+- text: Team
+  url: team/
+  internal: true
+- text: Project Repo
+  url: https://github.com/cshuler/Tutuila_SWB2_WebViewer
+  internal: false
+
+  
+
+# Repo list
+# List repos that you would like to appear on the homepage here
+repos:
+- name: Tutuila_SWB2_WebViewer
+  description: The data portal repo
+  url: https://github.com/cshuler/Tutuila_SWB2_WebViewer
+- name: UH-WRRC Offical Site
+  description: University of Hawaii Water Resources Research Center
+  url: https://www.wrrc.hawaii.edu/
+
+# Style Variables
+brand_color: "#2cb34a"
+
+# Offline caching
+offline_cache: false
+cache_name: DOCter-v1.1
