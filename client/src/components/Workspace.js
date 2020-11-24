@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { PieChart } from './PieChart'
 
 export class Workspace extends Component {
     render() {
@@ -9,6 +10,7 @@ export class Workspace extends Component {
                 </div>
                 <p>Modal agreement</p>
                 <p>Map Div</p>
+                <PieChart />
                 <p>Layer Div</p>
                 <p>Base Case Scenario Div</p>
                 <p>Future Scenario Div</p>
