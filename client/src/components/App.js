@@ -7,6 +7,7 @@ import Background from './Background'
 import About from './About'
 import Instruction from './Instruction'
 import FooterBar from './FooterBar'
+import ModelDetails from './ModelDetails'
 export class App extends Component {
   render() {
     return (
@@ -15,6 +16,7 @@ export class App extends Component {
           <NavBar />
           <Route exact path="/" component={Home} />
           <Route exact path="/workspace" component={Workspace} />
+          <Route exact path="/modeldetails" component={ModelDetails} />
           <Route exact path="/background" component={Background} />
           <Route exact path="/about" component={About} />
           <Route exact path="/instruction" component={Instruction} />

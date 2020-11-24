@@ -8,6 +8,7 @@ export class NavBar extends Component {
                 <div className="nav-wrapper">
                     <Link to={'/'} style={{marginLeft: 10}} className="left" id="nav-mobile"> Tutuila </Link>
                     <Link to={'/workspace'} style={{marginLeft: 10}} className="left" id="nav-mobile"> Workspace </Link>
+                    <Link to={'/modeldetails'} style={{marginLeft: 10}} className="left" id="nav-mobile"> Model Details</Link>
                     <Link to={'/background'} style={{marginLeft: 10}} className="left" id="nav-mobile"> Background </Link>
                     <Link to={'/about'} style={{marginLeft: 10}} className="left" id="nav-mobile"> About </Link>
                     <Link to={'/instruction'} style={{marginLeft: 10}} className="left" id="nav-mobile"> Instruction </Link>
