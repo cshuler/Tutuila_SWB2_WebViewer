@@ -5,7 +5,7 @@ import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGro
 export class Workspace extends Component {
     render() {
 
-        const center = [51.505, -0.09]
+        const center = [-14.32, -170.74]
         const rectangle = [
             [51.49, -0.08],
             [51.5, -0.06],
@@ -19,7 +19,7 @@ export class Workspace extends Component {
                 <p>Modal agreement</p>
                 <div>
                     <p>Map Div</p>
-                    <MapContainer style={{ height: "360px" }} center={center} zoom={13} scrollWheelZoom={false}>
+                    <MapContainer style={{ height: "360px" }} center={center} zoom={11} scrollWheelZoom={false}>
                         <LayersControl position="topright">
                             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
                                 <TileLayer
