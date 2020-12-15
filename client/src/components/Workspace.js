@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import { PieChart } from './PieChart'
-import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle } from 'react-leaflet'
+import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle, Polygon, GeoJSON } from 'react-leaflet'
+
+const runOffData = require('../data/geoJson_files/runoff.json')
+
+const data = [];
+
+const stamenTonerTiles = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.png';
+const stamenTonerAttr = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+const mapCenter = [-14.32, -170.74]
+const zoomLevel = 13;
+
 
 export class Workspace extends Component {
     render() {
-
-        const center = [-14.32, -170.74]
         const rectangle = [
             [51.49, -0.08],
             [51.5, -0.06],
@@ -16,11 +24,14 @@ export class Workspace extends Component {
                 <div style={{ textAlign: 'center' }}>
                     <h3>Workspace</h3>
                 </div>
+
                 <p>Modal agreement</p>
-                <div>
+                <div id="mapdiv">
                     <p>Map Div</p>
-                    <MapContainer style={{ height: "360px" }} center={center} zoom={11} scrollWheelZoom={false}>
+                    <MapContainer style={{ height: "360px" }} center={mapCenter} zoom={zoomLevel} scrollWheelZoom={false}>
+
                         <LayersControl position="topright">
+
                             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
                                 <TileLayer
                                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -33,8 +44,13 @@ export class Workspace extends Component {
                                     url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                                 />
                             </LayersControl.BaseLayer>
+                            
+                            <LayersControl.Overlay name="runoff thing">
+                                <GeoJSON key='my-geojson' data={runOffData} />
+
+                            </LayersControl.Overlay>
                             <LayersControl.Overlay name="Marker with popup">
-                                <Marker position={center}>
+                                <Marker position={mapCenter}>
                                     <Popup>
                                         A pretty CSS3 popup. <br /> Easily customizable.
                                     </Popup>
@@ -43,12 +59,12 @@ export class Workspace extends Component {
                             <LayersControl.Overlay checked name="Layer group with circles">
                                 <LayerGroup>
                                     <Circle
-                                        center={center}
+                                        center={mapCenter}
                                         pathOptions={{ fillColor: 'blue' }}
                                         radius={200}
                                     />
                                     <Circle
-                                        center={center}
+                                        center={mapCenter}
                                         pathOptions={{ fillColor: 'red' }}
                                         radius={100}
                                         stroke={false}
@@ -69,6 +85,7 @@ export class Workspace extends Component {
                                     <Rectangle bounds={rectangle} />
                                 </FeatureGroup>
                             </LayersControl.Overlay>
+
                         </LayersControl>
                     </MapContainer>
                 </div>
