@@ -8,8 +8,8 @@ const data = [];
 
 const stamenTonerTiles = 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}.png';
 const stamenTonerAttr = 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
-const mapCenter = [-14.32, -170.74]
-const zoomLevel = 13;
+const mapCenter = [-14.30, -170.70]
+const zoomLevel = 12;
 
 
 export class Workspace extends Component {
@@ -28,7 +28,7 @@ export class Workspace extends Component {
                 <p>Modal agreement</p>
                 <div id="mapdiv">
                     <p>Map Div</p>
-                    <MapContainer style={{ height: "360px" }} center={mapCenter} zoom={zoomLevel} scrollWheelZoom={false}>
+                    <MapContainer style={{ height: "480px" }} center={mapCenter} zoom={zoomLevel} scrollWheelZoom={false}>
 
                         <LayersControl position="topright">
 
