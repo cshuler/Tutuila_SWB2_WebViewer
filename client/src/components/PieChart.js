@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {DATA as runoff} from '../Raster_files_Base_scenario/runoff_annual'
+import {DATA as runoff} from '../data/Raster_files_Base_scenario/runoff_annual'
 
 export class PieChart extends Component {
     constructor(props){
