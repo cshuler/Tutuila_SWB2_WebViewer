@@ -1,0 +1,1 @@
+cp -R /mnt/c/Users/WRRCuser/Desktop/assets/*  /home/cshuler/Tutuila_SWB2_WebViewer/client/src/assets 
