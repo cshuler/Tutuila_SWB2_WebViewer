@@ -32,7 +32,11 @@ export class Workspace extends Component {
 
                         <LayersControl position="topright">
 
-                            <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
+                            <LayersControl.BaseLayer checked name="Run Off">
+                                <GeoJSON key='my-geojson' data={runOffData} />
+
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer name="OpenStreetMap.Mapnik">
                                 <TileLayer
                                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -45,10 +49,6 @@ export class Workspace extends Component {
                                 />
                             </LayersControl.BaseLayer>
                             
-                            <LayersControl.Overlay name="runoff thing">
-                                <GeoJSON key='my-geojson' data={runOffData} />
-
-                            </LayersControl.Overlay>
                             <LayersControl.Overlay name="Marker with popup">
                                 <Marker position={mapCenter}>
                                     <Popup>
