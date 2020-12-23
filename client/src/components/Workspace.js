@@ -19,12 +19,11 @@ var numberthing = 0
 export class Workspace extends Component {
     cellStyle = (cell) => {
         var gridcode = cell.properties.gridcode
-        console.log(gridcode)
+
         if (gridcode > 0) {
-            console.log(gridcode)
-            return {fillColor: 'blue', color: 'yellow', weight: 1, fillOpacity: 0.5}
+            return {fillColor: 'green', color: 'yellow', weight: 1, fillOpacity: 0.5}
         } else {
-            return {fillColor: 'red', fillOpacity: 0.5, color: 'black', weight: 1}
+            return {fillColor: 'black', fillOpacity: 1, color: 'black', weight: 1}
         }
     }
     // cellStyle = {
