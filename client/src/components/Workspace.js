@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { PieChart } from './PieChart'
 import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle, Polygon, GeoJSON } from 'react-leaflet'
+import "./MyMap.css"
 
 const runOffData = require('../data/geoJson_files/runoff.json')
 
@@ -11,8 +12,38 @@ const stamenTonerAttr = 'Map tiles by <a href="http://stamen.com">Stamen Design<
 const mapCenter = [-14.30, -170.70]
 const zoomLevel = 12;
 
+var numberthing = 0 
+
+//370 is the largest gridcode
 
 export class Workspace extends Component {
+    cellStyle = (cell) => {
+        var gridcode = cell.properties.gridcode
+        console.log(gridcode)
+        if (gridcode > 0) {
+            console.log(gridcode)
+            return {fillColor: 'blue', color: 'yellow', weight: 1, fillOpacity: 0.5}
+        } else {
+            return {fillColor: 'red', fillOpacity: 0.5, color: 'black', weight: 1}
+        }
+    }
+    // cellStyle = {
+    //     fillColor: 'red',
+    //     fillOpacity: 0.5,
+    //     color: 'black',
+    //     weight: 1
+    // }
+    onEachCell = (cell, layer ) => {
+        //console.log(gridcode)
+        layer.on({
+            click: (event) => {
+                event.target.setStyle({
+                    fillColor: 'green',
+                    color: 'green'
+                })
+            }
+        })
+    }
     render() {
         const rectangle = [
             [51.49, -0.08],
@@ -33,7 +64,7 @@ export class Workspace extends Component {
                         <LayersControl position="topright">
 
                             <LayersControl.BaseLayer checked name="Run Off">
-                                <GeoJSON key='my-geojson' data={runOffData} />
+                                <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} onEachFeature={this.onEachCell} />
 
                             </LayersControl.BaseLayer>
                             <LayersControl.BaseLayer name="OpenStreetMap.Mapnik">
