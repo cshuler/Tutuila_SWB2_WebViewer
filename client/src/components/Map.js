@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGro
 import "./MyMap.css"
 
 const mapCenter = [-14.30, -170.70]
-const zoomLevel = 12;
+const zoomLevel = 11;
 
 //var numberthing = 0 
 //var largestGridCode = 370
