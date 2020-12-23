@@ -13,18 +13,50 @@ const mapCenter = [-14.30, -170.70]
 const zoomLevel = 12;
 
 var numberthing = 0 
+var largestGridCode = 370
 
 //370 is the largest gridcode
+//1 - 0-37
+//2 - 38-74
+//3 - 75-111
+//4 - 112-148
+//5 - 149-185
+//6 - 186-222
+//7 - 223-259
+//8 - 260-296
+//9 - 297-333
+//10 - 334-370
 
 export class Workspace extends Component {
     cellStyle = (cell) => {
         var gridcode = cell.properties.gridcode
 
-        if (gridcode > 0) {
-            return {fillColor: 'green', color: 'yellow', weight: 1, fillOpacity: 0.5}
+        if (gridcode >= 334) {
+            return {fillColor: 'darkred', color: 'darkred', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 333 && gridcode >=297) {
+            return {fillColor: 'red', color: 'red', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 296 && gridcode >=260) {
+            return {fillColor: 'lightred', color: 'lightred', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 259 && gridcode >=223) {
+            return {fillColor: 'orange', color: 'orange', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 222 && gridcode >=186) {
+            return {fillColor: 'lightorange', color: 'lightorange', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 185 && gridcode >=149) {
+            return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 148 && gridcode >=112) {
+            return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 111 && gridcode >=75) {
+            return {fillColor: 'lightgreen', color: 'lightgreen', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 74 && gridcode >=38) {
+            return {fillColor: 'lightblue', color: 'lightblue', weight: 0, fillOpacity: 1}
+        } else if (gridcode <= 37 && gridcode >=1) {
+            return {fillColor: 'blue', color: 'blue', weight: 0, fillOpacity: 1}
+        } else if (gridcode === 0) {
+            return {fillColoe: 'black', color: 'black', weight: 0 , fillOpacity: 1}
         } else {
-            return {fillColor: 'black', fillOpacity: 1, color: 'black', weight: 1}
+            return {fillColor: 'pink', fillOpacity: 1, color: 'pink', weight: 0.5}
         }
+
     }
     // cellStyle = {
     //     fillColor: 'red',
