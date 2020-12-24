@@ -103,6 +103,18 @@ export class Map extends Component {
                                     url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
                                 />
                             </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer name="OpenTopoMap">
+                                <TileLayer
+                                    attribution='Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+                                    url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png"
+                                />
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer name="Esri.WorldImagery">
+                                <TileLayer
+                                    attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                                />
+                            </LayersControl.BaseLayer>
                             
                             <LayersControl.Overlay name="Marker with popup">
                                 <Marker position={mapCenter}>
@@ -111,7 +123,7 @@ export class Map extends Component {
                                     </Popup>
                                 </Marker>
                             </LayersControl.Overlay>
-                            <LayersControl.Overlay checked name="Layer group with circles">
+                            <LayersControl.Overlay name="Layer group with circles">
                                 <LayerGroup>
                                     <Circle
                                         center={mapCenter}
