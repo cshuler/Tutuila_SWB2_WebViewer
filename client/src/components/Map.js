@@ -9,16 +9,16 @@ const zoomLevel = 11;
 //var largestGridCode = 370
 
 //370 is the largest gridcode
-//1 - 0-37
-//2 - 38-74
-//3 - 75-111
-//4 - 112-148
-//5 - 149-185
-//6 - 186-222
-//7 - 223-259
-//8 - 260-296
-//9 - 297-333
-//10 - 334-370
+//1 - 1-37 = blue
+//2 - 38-74 = lightblue
+//3 - 75-111 = light green
+//4 - 112-148 = yellow
+//5 - 149-185 = yellow
+//6 - 186-222 = light orange
+//7 - 223-259 = orange
+//8 - 260-296 = light red
+//9 - 297-333 = red
+//10 - 334-370 = dark red
 
 export class Map extends Component {
     cellStyle = (cell) => {
@@ -57,17 +57,17 @@ export class Map extends Component {
     //     color: 'black',
     //     weight: 1
     // }
-    onEachCell = (cell, layer ) => {
-        //console.log(gridcode)
-        layer.on({
-            click: (event) => {
-                event.target.setStyle({
-                    fillColor: 'green',
-                    color: 'green'
-                })
-            }
-        })
-    }
+    // onEachCell = (cell, layer ) => {
+    //     //console.log(gridcode)
+    //     layer.on({
+    //         click: (event) => {
+    //             event.target.setStyle({
+    //                 fillColor: 'green',
+    //                 color: 'green'
+    //             })
+    //         }
+    //     })
+    // }
     render() {
         const rectangle = [
             [51.49, -0.08],
@@ -88,7 +88,8 @@ export class Map extends Component {
                         <LayersControl position="topright">
 
                             <LayersControl.BaseLayer checked name="Run Off">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} />
+                                <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} />
+                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
 
                             </LayersControl.BaseLayer>
                             <LayersControl.BaseLayer name="OpenStreetMap.Mapnik">
@@ -111,7 +112,7 @@ export class Map extends Component {
                                     </Popup>
                                 </Marker>
                             </LayersControl.Overlay>
-                            <LayersControl.Overlay checked name="Layer group with circles">
+                            <LayersControl.Overlay name="Layer group with circles">
                                 <LayerGroup>
                                     <Circle
                                         center={mapCenter}
