@@ -5,38 +5,13 @@ import chroma from 'chroma-js'
 
 const mapCenter = [-14.30, -170.70]
 const zoomLevel = 11;
-
-//var numberthing = 0 
-//var largestGridCode = 370
-
-//370 is the largest gridcode
-//1 - 1-37 = blue
-//2 - 38-74 = lightblue
-//3 - 75-111 = light green
-//4 - 112-148 = yellow
-//5 - 149-185 = yellow
-//6 - 186-222 = light orange
-//7 - 223-259 = orange
-//8 - 260-296 = light red
-//9 - 297-333 = red
-//10 - 334-370 = dark red
-
-// chroma.scale(['blue','yellow',red]).domain([0, 1000])
-
+var highestGridcode = 0
 export class Map extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            highestNumber: 0
-        }
-    }
-    componentDidMount(props){
-        // var findingHighest = 
-        // this.setState({highestNumber: this.props.})
-    }
     cellStyle = (cell) => {
         var gridcode = cell.properties.gridcode
-
+        if (gridcode > highestGridcode) {
+            highestGridcode = gridcode
+        }
         if(gridcode === 0) {
             return {
                 fillColor:'black', color: 'black', fillOpacity: 1
@@ -44,7 +19,7 @@ export class Map extends Component {
         }
 
         var mapScale = chroma.scale(['blue', 'yellow', 'red'])
-            .domain([0, 370])
+            .domain([0, highestGridcode])
 
         var fillColor = mapScale(gridcode)
 
@@ -53,33 +28,6 @@ export class Map extends Component {
                 color: fillColor,
                 fillOpacity: 1
             }
-        
-
-        // if (gridcode >= 334) {
-        //     return {fillColor: 'darkred', color: 'darkred', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 333 && gridcode >=297) {
-        //     return {fillColor: 'red', color: 'red', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 296 && gridcode >=260) {
-        //     return {fillColor: 'lightred', color: 'lightred', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 259 && gridcode >=223) {
-        //     return {fillColor: 'orange', color: 'orange', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 222 && gridcode >=186) {
-        //     return {fillColor: 'lightorange', color: 'lightorange', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 185 && gridcode >=149) {
-        //     return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 148 && gridcode >=112) {
-        //     return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 111 && gridcode >=75) {
-        //     return {fillColor: 'lightgreen', color: 'lightgreen', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 74 && gridcode >=38) {
-        //     return {fillColor: 'lightblue', color: 'lightblue', weight: 0, fillOpacity: 1}
-        // } else if (gridcode <= 37 && gridcode >=1) {
-        //     return {fillColor: 'blue', color: 'blue', weight: 0, fillOpacity: 1}
-        // } else if (gridcode === 0) {
-        //     return {fillColoe: 'black', color: 'black', weight: 0 , fillOpacity: 1}
-        // } else {
-        //     return {fillColor: 'pink', fillOpacity: 1, color: 'pink', weight: 0.5}
-        // }
 
     }
     // cellStyle = {
