@@ -24,24 +24,33 @@ const zoomLevel = 11;
 // chroma.scale(['blue','yellow',red]).domain([0, 1000])
 
 export class Map extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            highestNumber: 0
+        }
+    }
+    componentDidMount(props){
+        // var findingHighest = 
+        // this.setState({highestNumber: this.props.})
+    }
     cellStyle = (cell) => {
         var gridcode = cell.properties.gridcode
 
         if(gridcode === 0) {
             return {
-                fillColor:'black', color: 'black', weight: 0, fillOpacity: 1
+                fillColor:'black', color: 'black', fillOpacity: 1
             }
         }
 
-        var mapScale = chroma.scale(['white', 'red'])
-            .domain([0, 400])
+        var mapScale = chroma.scale(['blue', 'yellow', 'red'])
+            .domain([0, 370])
 
         var fillColor = mapScale(gridcode)
 
             return {
                 fillColor: fillColor,
                 color: fillColor,
-                weight: 0,
                 fillOpacity: 1
             }
         
