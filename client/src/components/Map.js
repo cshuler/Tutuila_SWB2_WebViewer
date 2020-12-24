@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle, GeoJSON } from 'react-leaflet'
 import "./MyMap.css"
+import chroma from 'chroma-js'
 
 const mapCenter = [-14.30, -170.70]
 const zoomLevel = 11;
@@ -20,35 +21,56 @@ const zoomLevel = 11;
 //9 - 297-333 = red
 //10 - 334-370 = dark red
 
+// chroma.scale(['blue','yellow',red]).domain([0, 1000])
+
 export class Map extends Component {
     cellStyle = (cell) => {
         var gridcode = cell.properties.gridcode
 
-        if (gridcode >= 334) {
-            return {fillColor: 'darkred', color: 'darkred', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 333 && gridcode >=297) {
-            return {fillColor: 'red', color: 'red', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 296 && gridcode >=260) {
-            return {fillColor: 'lightred', color: 'lightred', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 259 && gridcode >=223) {
-            return {fillColor: 'orange', color: 'orange', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 222 && gridcode >=186) {
-            return {fillColor: 'lightorange', color: 'lightorange', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 185 && gridcode >=149) {
-            return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 148 && gridcode >=112) {
-            return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 111 && gridcode >=75) {
-            return {fillColor: 'lightgreen', color: 'lightgreen', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 74 && gridcode >=38) {
-            return {fillColor: 'lightblue', color: 'lightblue', weight: 0, fillOpacity: 1}
-        } else if (gridcode <= 37 && gridcode >=1) {
-            return {fillColor: 'blue', color: 'blue', weight: 0, fillOpacity: 1}
-        } else if (gridcode === 0) {
-            return {fillColoe: 'black', color: 'black', weight: 0 , fillOpacity: 1}
-        } else {
-            return {fillColor: 'pink', fillOpacity: 1, color: 'pink', weight: 0.5}
+        if(gridcode === 0) {
+            return {
+                fillColor:'black', color: 'black', weight: 0, fillOpacity: 1
+            }
         }
+
+        var mapScale = chroma.scale(['white', 'red'])
+            .domain([0, 400])
+
+        var fillColor = mapScale(gridcode)
+
+            return {
+                fillColor: fillColor,
+                color: fillColor,
+                weight: 0,
+                fillOpacity: 1
+            }
+        
+
+        // if (gridcode >= 334) {
+        //     return {fillColor: 'darkred', color: 'darkred', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 333 && gridcode >=297) {
+        //     return {fillColor: 'red', color: 'red', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 296 && gridcode >=260) {
+        //     return {fillColor: 'lightred', color: 'lightred', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 259 && gridcode >=223) {
+        //     return {fillColor: 'orange', color: 'orange', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 222 && gridcode >=186) {
+        //     return {fillColor: 'lightorange', color: 'lightorange', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 185 && gridcode >=149) {
+        //     return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 148 && gridcode >=112) {
+        //     return {fillColor: 'yellow', color: 'yellow', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 111 && gridcode >=75) {
+        //     return {fillColor: 'lightgreen', color: 'lightgreen', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 74 && gridcode >=38) {
+        //     return {fillColor: 'lightblue', color: 'lightblue', weight: 0, fillOpacity: 1}
+        // } else if (gridcode <= 37 && gridcode >=1) {
+        //     return {fillColor: 'blue', color: 'blue', weight: 0, fillOpacity: 1}
+        // } else if (gridcode === 0) {
+        //     return {fillColoe: 'black', color: 'black', weight: 0 , fillOpacity: 1}
+        // } else {
+        //     return {fillColor: 'pink', fillOpacity: 1, color: 'pink', weight: 0.5}
+        // }
 
     }
     // cellStyle = {
