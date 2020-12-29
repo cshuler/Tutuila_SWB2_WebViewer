@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle, GeoJSON } from 'react-leaflet'
 import "./MyMap.css"
 import chroma from 'chroma-js'
+import geojsonvt from 'geojson-vt'
+
+
 
 // const gp = require("geojson-precision")
 
@@ -10,49 +13,47 @@ const zoomLevel = 11;
 var highestGridcode = 0
 export class Map extends Component {
     cellStyle = (cell) => {
-        var gridcode = cell.properties.gridCode
+        var gridcode = cell.properties.gridcode
         if (gridcode > highestGridcode) {
             highestGridcode = gridcode
         }
         if(gridcode === 0) {
             return {
-                fillColor:'black', color: 'black', fillOpacity: 1
+                    fillColor:'black', color: 'black', fillOpacity: 1
+                }
             }
-        }
-
+                
         var mapScale = chroma.scale(['blue', 'yellow', 'red'])
-            .domain([0, highestGridcode])
-
+        .domain([0, highestGridcode])
+        
         var fillColor = mapScale(gridcode)
-
-            return {
-                fillColor: fillColor,
-                color: fillColor,
-                fillOpacity: 1
-            }
+        
+        return {
+            fillColor: fillColor,
+            color: fillColor,
+            fillOpacity: 1
+        }
     }
-    // cellStyle = {
-    //     fillColor: 'red',
-    //     fillOpacity: 0.5,
-    //     color: 'black',
-    //     weight: 1
-    // }
     // onEachCell = (cell, layer ) => {
-    //     //console.log(gridcode)
-    //     layer.on({
-    //         click: (event) => {
-    //             event.target.setStyle({
-    //                 fillColor: 'green',
-    //                 color: 'green'
-    //             })
-    //         }
-    //     })
-    // }
+        //     //console.log(gridcode)
+        //     layer.on({
+            //         click: (event) => {
+                //             event.target.setStyle({
+                    //                 fillColor: 'green',
+                    //                 color: 'green'
+                    //             })
+                    //         }
+                    //     })
+                    // }
     render() {
         const rectangle = [
             [51.49, -0.08],
             [51.5, -0.06],
         ]
+        var tileIndex = geojsonvt(this.props.data)
+        //var features = tileIndex.getTile(z, x, y).features;
+        console.log(tileIndex.tileCoords)
+
         return (
             <div>
                 <div style={{ textAlign: 'center' }}>
