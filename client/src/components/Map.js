@@ -8,7 +8,7 @@ const zoomLevel = 11;
 var highestGridcode = 0
 export class Map extends Component {
     cellStyle = (cell) => {
-        var gridcode = cell.properties.gridcode
+        var gridcode = cell.properties.gridCode
         if (gridcode > highestGridcode) {
             highestGridcode = gridcode
         }
