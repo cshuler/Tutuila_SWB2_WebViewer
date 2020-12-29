@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGro
 import "./MyMap.css"
 import chroma from 'chroma-js'
 
+// const gp = require("geojson-precision")
+
 const mapCenter = [-14.30, -170.70]
 const zoomLevel = 11;
 var highestGridcode = 0
@@ -28,7 +30,6 @@ export class Map extends Component {
                 color: fillColor,
                 fillOpacity: 1
             }
-
     }
     // cellStyle = {
     //     fillColor: 'red',
@@ -52,7 +53,6 @@ export class Map extends Component {
             [51.49, -0.08],
             [51.5, -0.06],
         ]
-
         return (
             <div>
                 <div style={{ textAlign: 'center' }}>
