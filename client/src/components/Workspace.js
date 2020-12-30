@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { PieChart } from './PieChart' 
 import Map from './Map'
 
-const runOffData = require('../data/geoJson_files/recharge_prj_cleaned.json')
+const runOffData = require('../data/geoJson_files/ET_prj_cleaned.json')
 
 export class Workspace extends Component {
     
