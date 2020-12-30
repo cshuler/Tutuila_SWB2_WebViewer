@@ -14,14 +14,15 @@ var highestGridcode = 0
 export class Map extends Component {
     cellStyle = (cell) => {
         var gridcode = cell.properties.gridCode
+        // console.log(gridcode.toFixed(2))
         if (gridcode > highestGridcode) {
             highestGridcode = gridcode
         }
-        // if(gridcode === 0) {
-        //     return {
-        //             fillColor:'black', color: 'black', fillOpacity: 1
-        //         }
-        //     }
+        if(gridcode === 0) {
+            return {
+                    fillColor:'black', color: 'black', fillOpacity: 1
+                }
+            }
                 
         var mapScale = chroma.scale(['blue', 'yellow', 'red'])
         .domain([0, highestGridcode])
