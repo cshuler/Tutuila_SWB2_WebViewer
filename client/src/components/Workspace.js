@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import { PieChart } from './PieChart' 
 import Map from './Map'
-
-const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
-
 export class Workspace extends Component {
     
     render() {
         return (
             <div>
-                <Map data={runOffData} />
+                <Map />
                 <PieChart />
                 <p>Layer Div</p>
                 <p>Base Case Scenario Div</p>

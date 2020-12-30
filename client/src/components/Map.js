@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle, GeoJSON } from 'react-leaflet'
 import "./MyMap.css"
 import chroma from 'chroma-js'
-import geojsonvt from 'geojson-vt'
+// import geojsonvt from 'geojson-vt'
 
+
+const ETData = require('../data/geoJson_files/ET_prj_cleaned.json')
+const interceptionData = require('../data/geoJson_files/interception_prj_cleaned.json')
+const rainFallData = require('../data/geoJson_files/rainfall_prj_cleaned.json')
+const rechargeData = require('../data/geoJson_files/recharge_prj_cleaned.json')
+const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
 
 
 // const gp = require("geojson-precision")
@@ -51,9 +57,9 @@ export class Map extends Component {
             [51.49, -0.08],
             [51.5, -0.06],
         ]
-        var tileIndex = geojsonvt(this.props.data)
-        //var features = tileIndex.getTile(z, x, y).features;
-        console.log(tileIndex.tileCoords)
+        // var tileIndex = geojsonvt(this.props.data)
+        // //var features = tileIndex.getTile(z, x, y).features;
+        // console.log(tileIndex.tileCoords)
 
         return (
             <div>
@@ -68,8 +74,28 @@ export class Map extends Component {
 
                         <LayersControl position="topright">
 
+                            <LayersControl.BaseLayer  name="ET">
+                                <GeoJSON key='my-geojson' style={this.cellStyle} data={ETData.features} />
+                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
+
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer  name="interception">
+                                <GeoJSON key='my-geojson' style={this.cellStyle} data={interceptionData.features} />
+                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
+
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer  name="rainfall">
+                                <GeoJSON key='my-geojson' style={this.cellStyle} data={rainFallData.features} />
+                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
+
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer  name="recharge">
+                                <GeoJSON key='my-geojson' style={this.cellStyle} data={rechargeData.features} />
+                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
+
+                            </LayersControl.BaseLayer>
                             <LayersControl.BaseLayer checked name="Run Off">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} />
+                                <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} />
                                 {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
 
                             </LayersControl.BaseLayer>
