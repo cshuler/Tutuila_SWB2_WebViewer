@@ -25,7 +25,7 @@ export class Map extends Component {
             }
                 
         var mapScale = chroma.scale(['blue', 'yellow', 'red'])
-        .domain([0, highestGridcode])
+        .domain([0, 180])
         
         var fillColor = mapScale(gridcode)
         
