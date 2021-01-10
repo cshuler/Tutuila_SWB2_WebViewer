@@ -4,10 +4,9 @@ import Legend from './Legend';
 import Optionsfield from './Optionsfield';
 import './Map.css';
 import data from '../data/geoJson_files/runoff_prj_cleaned.json';
-const {mapBoxAccessToken} = require('../config/keys')
 
 mapboxgl.accessToken =
-  mapBoxAccessToken;
+  'pk.eyJ1Ijoia2FuYWthaGFja3MiLCJhIjoiY2tqa3NxcGRrMGYwcjJ5cnRoa3Vxcm44dSJ9.64q6h3IMKGz6P8msFnIHSQ';
 
 const MapBoxMap = () => {
   const options = [
