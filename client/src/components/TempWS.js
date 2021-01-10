@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGro
 import "./MyMap.css"
 import chroma from 'chroma-js'
 // import geojsonvt from 'geojson-vt'
+import MapBoxMap from './MapBoxMap'
 
 
 const ETData = require('../data/geoJson_files/ET_prj_cleaned.json')
@@ -17,7 +18,7 @@ const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
 const mapCenter = [-14.30, -170.70]
 const zoomLevel = 11;
 var highestGridcode = 0
-export class Map extends Component {
+export class TempWS extends Component {
     cellStyle = (cell) => {
         var gridcode = cell.properties.gridCode
         // console.log(gridcode.toFixed(2))
@@ -73,32 +74,13 @@ export class Map extends Component {
                     <MapContainer style={{ height: "480px" }} center={mapCenter} zoom={zoomLevel} scrollWheelZoom={false}>
 
                         <LayersControl position="topright">
+                            <LayersControl.BaseLayer checked style={this.cellStyle} name="RunOFF">
 
-                            <LayersControl.BaseLayer name="ET">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={ETData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.BaseLayer>
-                            <LayersControl.BaseLayer name="interception">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={interceptionData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
+                                <MapBoxMap />
 
                             </LayersControl.BaseLayer>
-                            <LayersControl.BaseLayer name="rainfall">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={rainFallData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
 
-                            </LayersControl.BaseLayer>
-                            <LayersControl.BaseLayer name="recharge">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={rechargeData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.BaseLayer>
-                            <LayersControl.BaseLayer checked name="Run Off">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.BaseLayer>
+                            
                             <LayersControl.BaseLayer name="OpenStreetMap.Mapnik">
                                 <TileLayer
                                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -169,4 +151,4 @@ export class Map extends Component {
     }
 }
 
-export default Map
+export default TempWS
