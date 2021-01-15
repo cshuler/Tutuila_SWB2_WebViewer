@@ -118,7 +118,7 @@ export class Map extends Component {
                                 {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
 
                             </LayersControl.Overlay>
-                            <LayersControl.Overlay name="Run Off">
+                            <LayersControl.Overlay checked name="Run Off">
                                 <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} />
                                 {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
 
