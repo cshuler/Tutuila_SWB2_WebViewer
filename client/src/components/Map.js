@@ -71,7 +71,6 @@ export class Map extends Component {
                 <div id="mapdiv">
                     <p>Map Div</p>
                     <MapContainer style={{ height: "480px" }} center={mapCenter} zoom={zoomLevel} scrollWheelZoom={false}>
-
                         <LayersControl position="topright">
                             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
                                 <TileLayer
@@ -118,7 +117,7 @@ export class Map extends Component {
                                 {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
 
                             </LayersControl.Overlay>
-                            <LayersControl.Overlay checked name="Run Off">
+                            <LayersControl.Overlay name="Run Off">
                                 <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} />
                                 {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
 

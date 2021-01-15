@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { MapContainer, TileLayer, Popup, Marker, LayersControl, Circle, LayerGroup, FeatureGroup, Rectangle, GeoJSON } from 'react-leaflet'
 import "./MyMap.css"
 import chroma from 'chroma-js'
-// import geojsonvt from 'geojson-vt'
+
+const Supercluster = require('supercluster');
 
 
 const ETData = require('../data/geoJson_files/ET_prj_cleaned.json')
@@ -68,7 +69,41 @@ export class TempWS extends Component {
                 <p>Modal agreement</p>
                 <div id="mapdiv">
                     <p>Map Div</p>
-                    <p>temp</p>
+                    <MapContainer style={{ height: "480px" }} center={mapCenter} zoom={zoomLevel} scrollWheelZoom={false}>
+                        <LayersControl position="topright">
+                            <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
+                                <TileLayer
+                                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                />
+                            </LayersControl.BaseLayer>
+
+
+                            <LayersControl.Overlay name="Layer group with circles">
+                                <LayerGroup>
+                                    <Circle
+                                        center={mapCenter}
+                                        pathOptions={{ fillColor: 'blue' }}
+                                        radius={200}
+                                    />
+                                    <Circle
+                                        center={mapCenter}
+                                        pathOptions={{ fillColor: 'red' }}
+                                        radius={100}
+                                        stroke={false}
+                                    />
+                                    <LayerGroup>
+                                        <Circle
+                                            center={[51.51, -0.08]}
+                                            pathOptions={{ color: 'green', fillColor: 'green' }}
+                                            radius={100}
+                                        />
+                                    </LayerGroup>
+                                </LayerGroup>
+                            </LayersControl.Overlay>
+
+                        </LayersControl>
+                    </MapContainer>
                 </div>
             </div>
         )
