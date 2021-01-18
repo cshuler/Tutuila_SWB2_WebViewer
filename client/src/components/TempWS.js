@@ -66,9 +66,12 @@ export class TempWS extends Component {
                     <h3>Map</h3>
                 </div>
 
+                <script src="index.js"></script>
+                
                 <p>Modal agreement</p>
                 <div id="mapdiv">
                     <p>Map Div</p>
+
                     <MapContainer style={{ height: "480px" }} center={mapCenter} zoom={zoomLevel} scrollWheelZoom={false}>
                         <LayersControl position="topright">
                             <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
