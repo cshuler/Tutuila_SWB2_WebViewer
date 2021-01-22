@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, LayersControl, Circle, LayerGroup, useMapEvent
 import "./MyMap.css"
 import chroma from 'chroma-js'
 import {dataLayer} from './map-style'
-const {REACT_APP_MAPBOX_TOKEN} = require('../config/keys')
+const {REACT_APP_MAPBOX_ACESS_TOKEN} = require('../config/keys')
 
 //const worker = new Worker('./worker.js')
 
@@ -57,7 +57,7 @@ export default function TempWS() {
         <ReactMapGL
           {...viewport}
           maxZoom={20}
-          mapboxApiAccessToken={REACT_APP_MAPBOX_TOKEN}
+          mapboxApiAccessToken={REACT_APP_MAPBOX_ACESS_TOKEN}
           onViewportChange={(newViewport) => {
             setViewport({ ...newViewport} )
           }}
