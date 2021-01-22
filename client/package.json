@@ -10,6 +10,7 @@
     "geojson-vt": "^3.2.1",
     "jquery": "^3.5.1",
     "leaflet": "^1.7.1",
+    "mapbox-gl": "^2.0.1",
     "materialize-css": "^1.0.0",
     "pigeon-maps": "^0.17.0",
     "pigeon-marker": "^0.3.4",
