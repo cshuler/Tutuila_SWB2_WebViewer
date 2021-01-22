@@ -47,9 +47,9 @@ export default function TempWS() {
     const [viewport, setViewport] = useState({
         latitude: -14.30,
         longitude: -170.70,
-        width: "100vw",
-        height: "100vh",
-        zoom: 12,
+        width: "100%",
+        height: "500px",
+        zoom: 10.5,
       });
     const mapRef = useRef();
 
