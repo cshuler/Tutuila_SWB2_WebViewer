@@ -5,10 +5,10 @@ import chroma from 'chroma-js'
 // import geojsonvt from 'geojson-vt'
 
 
-const ETData = require('../data/geoJson_files/ET_prj_cleaned.json')
-const interceptionData = require('../data/geoJson_files/interception_prj_cleaned.json')
-const rainFallData = require('../data/geoJson_files/rainfall_prj_cleaned.json')
-const rechargeData = require('../data/geoJson_files/recharge_prj_cleaned.json')
+// const ETData = require('../data/geoJson_files/ET_prj_cleaned.json')
+// const interceptionData = require('../data/geoJson_files/interception_prj_cleaned.json')
+// const rainFallData = require('../data/geoJson_files/rainfall_prj_cleaned.json')
+// const rechargeData = require('../data/geoJson_files/recharge_prj_cleaned.json')
 const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
 
 
@@ -97,26 +97,6 @@ export class Map extends Component {
                                 />
                             </LayersControl.BaseLayer>
 
-                            <LayersControl.Overlay name="ET">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={ETData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.Overlay>
-                            <LayersControl.Overlay name="interception">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={interceptionData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.Overlay>
-                            <LayersControl.Overlay name="rainfall">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={rainFallData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.Overlay>
-                            <LayersControl.Overlay name="recharge">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={rechargeData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.Overlay>
                             <LayersControl.Overlay name="Run Off">
                                 <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} />
                                 {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
