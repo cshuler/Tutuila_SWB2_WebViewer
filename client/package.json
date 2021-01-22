@@ -8,13 +8,8 @@
     "@testing-library/user-event": "^12.1.10",
     "chroma-js": "^2.1.0",
     "geojson-vt": "^3.2.1",
-    "jquery": "^3.5.1",
     "leaflet": "^1.7.1",
-    "mapbox-gl": "^2.0.1",
     "materialize-css": "^1.0.0",
-    "pigeon-maps": "^0.17.0",
-    "pigeon-marker": "^0.3.4",
-    "pigeon-overlay": "^0.2.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-leaflet": "^3.0.2",
@@ -25,7 +20,6 @@
     "react-scripts": "4.0.0",
     "react-supercluster": "^1.0.0",
     "redux": "^4.0.5",
-    "supercluster": "^7.1.0",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
