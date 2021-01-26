@@ -8,6 +8,7 @@ import About from './About'
 import Instruction from './Instruction'
 import FooterBar from './FooterBar'
 import ModelDetails from './ModelDetails'
+import TempWS from './TempWS'
 export class App extends Component {
   render() {
     return (
@@ -15,6 +16,7 @@ export class App extends Component {
         <div className="container">
           <NavBar />
           <Route exact path="/" component={Home} />
+          <Route exact path="/tempworkspace" component={TempWS} />
           <Route exact path="/workspace" component={Workspace} />
           <Route exact path="/modeldetails" component={ModelDetails} />
           <Route exact path="/background" component={Background} />
