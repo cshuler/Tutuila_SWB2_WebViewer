@@ -19,30 +19,28 @@ var mapScale = chroma.scale(['blue', 'yellow', 'red'])
 
 //var fillColor = mapScale(gridcode)
 
-export const cellStyle = (cell) => {
-  console.log (cell)
-}
+
 
 export const dataLayer = {
   id: 'data',
   type: 'fill',
-  // paint: {
-  //   'fill-color': {
-  //     property: 'gridCode',
-  //     stops: [
-  //       [0, '#3288bd'],
-  //       [1, '#66c2a5'],
-  //       [2, '#abdda4'],
-  //       [3, '#e6f598'],
-  //       [4, '#ffffbf'],
-  //       [5, '#fee08b'],
-  //       [6, '#fdae61'],
-  //       [7, '#f46d43'],
-  //       [8, '#d53e4f']
-  //     ]
-  //   },
-  //   'fill-opacity': 0.5
-  //}
+  paint: {
+    'fill-color': {
+      property: 'gridCode',
+      stops: [
+        [0, '#3288bd'],
+        [1, '#66c2a5'],
+        [2, '#abdda4'],
+        [3, '#e6f598'],
+        [4, '#ffffbf'],
+        [5, '#fee08b'],
+        [6, '#fdae61'],
+        [7, '#f46d43'],
+        [8, '#d53e4f']
+      ]
+    },
+    'fill-opacity': 0.5
+  }
 };
 
 //var highestGridcode = 0
@@ -60,15 +58,14 @@ export default function TempWS() {
         <ReactMapGL
           {...viewport}
           maxZoom={20}
-          minZoom={10}
+          minZoom={12}
           mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
             setViewport({ ...newViewport} )
           }}
+          mapStyle="mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"
         >
-          <Source type='geojson' data={runOffData}>
-            <Layer {...dataLayer} style={cellStyle} />
-          </Source>
+          
         </ReactMapGL>
       );
 }
