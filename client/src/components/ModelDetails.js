@@ -19,7 +19,7 @@ export class ModelDetails extends Component {
                         
                         <div className="row">
                            <div className="map">
-                              <img src={tut_map} width="500" height="250" />
+                              <img src={tut_map} width="500" height="250" alt='map' />
                               <i>Map of Tutuila Island</i>
                            </div>
                         </div>   
@@ -35,7 +35,7 @@ export class ModelDetails extends Component {
                         
                         <div className="row">
                            <div className="scematic">
-                              <img src={scematic} width="300" height="400" />
+                              <img src={scematic} width="300" height="400" alt='scematic' />
                               <p><i>Diagram illustrating factors used to ~{"\n"} 
                               calculate water balance for Tutuila.</i></p>
                            </div>
@@ -51,7 +51,7 @@ export class ModelDetails extends Component {
                           
                         <div className="row">
                            <div className="imps">
-                              <img src={imps} width="300" height="600" />
+                              <img src={imps} width="300" height="600" alt="imps" />
                               <p><i>Input datasets</i></p>
                            </div>
                         </div>  
