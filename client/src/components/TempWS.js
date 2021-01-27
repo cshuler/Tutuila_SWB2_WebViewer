@@ -58,7 +58,7 @@ export default function TempWS() {
         <ReactMapGL
           {...viewport}
           maxZoom={20}
-          minZoom={12}
+          minZoom={10.5}
           mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
             setViewport({ ...newViewport} )
