@@ -3,7 +3,7 @@ import ReactMapGL, { Source, Layer } from 'react-map-gl'
 import "./MyMap.css"
 //import chroma from 'chroma-js'
 import {dataLayer} from './map-style'
-const {REACT_APP_MAPBOX_ACESS_TOKEN} = require('../config/keys')
+const {REACT_APP_MAPBOX_ACCESS_TOKEN} = require('../config/keys')
 
 //const worker = new Worker('./worker.js')
 
@@ -31,7 +31,7 @@ export default function TempWS() {
           {...viewport}
           maxZoom={20}
           minZoom={10}
-          mapboxApiAccessToken={REACT_APP_MAPBOX_ACESS_TOKEN}
+          mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
             setViewport({ ...newViewport} )
           }}
