@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import ReactMapGL, { Source, Layer } from 'react-map-gl'
+import Button from '@material-ui/core/Button';
 import "./MyMap.css"
 import chroma from 'chroma-js'
 //import {dataLayer} from './map-style'
-const {REACT_APP_MAPBOX_ACCESS_TOKEN} = require('../config/keys')
+const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require('../config/keys')
 
 //const worker = new Worker('./worker.js')
 
@@ -15,7 +16,7 @@ const {REACT_APP_MAPBOX_ACCESS_TOKEN} = require('../config/keys')
 const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
 
 var mapScale = chroma.scale(['blue', 'yellow', 'red'])
-            .domain([0, 180])
+  .domain([0, 180])
 
 //var fillColor = mapScale(gridcode)
 
@@ -46,27 +47,98 @@ export const dataLayer = {
 //var highestGridcode = 0
 
 export default function TempWS() {
-    const [viewport, setViewport] = useState({
-        latitude: -14.30,
-        longitude: -170.70,
-        width: "100%",
-        height: "500px",
-        zoom: 10.5,
-      });
+  const [viewport, setViewport] = useState({
+    latitude: -14.30,
+    longitude: -170.70,
+    width: "100%",
+    height: "500px",
+    zoom: 10.5,
+  });
+  const [mapStyling, setMapStyling] = useState({
+    style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"
+  })
 
-    return (
-        <ReactMapGL
-          {...viewport}
-          maxZoom={20}
-          minZoom={10.5}
-          mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
-          onViewportChange={(newViewport) => {
-            setViewport({ ...newViewport} )
+  return (
+    <div>
+      <ReactMapGL
+        {...viewport}
+        maxZoom={20}
+        minZoom={10.5}
+        mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
+        onViewportChange={(newViewport) => {
+          setViewport({ ...newViewport })
+        }}
+        mapStyle={mapStyling.style}
+      >
+      </ReactMapGL>
+      <div>
+        <Button
+          variant="outlined" 
+          color="primary"
+          style={{
+            margin: '5px'
           }}
-          mapStyle="mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"
+
+          onClick={() => {
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+          }}
         >
-          
-        </ReactMapGL>
-      );
+          Run Off
+        </Button>
+        <Button
+          variant="outlined" 
+          color="primary"
+          style={{
+            margin: '5px'
+          }}
+
+          onClick={() => {
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+          }}
+        >
+          ET
+        </Button>
+        <Button
+          variant="outlined" 
+          color="primary"
+          style={{
+            margin: '5px'
+          }}
+
+          onClick={() => {
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+          }}
+        >
+          Item 3
+        </Button>
+        <Button
+          variant="outlined" 
+          color="primary"
+          style={{
+            margin: '5px'
+          }}
+
+          onClick={() => {
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+          }}
+        >
+          Item 4
+        </Button>
+        <Button
+          variant="outlined" 
+          color="primary"
+          style={{
+            margin: '5px'
+          }}
+
+          onClick={() => {
+            setMapStyling({ style: "apbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+          }}
+        >
+          Item 5
+        </Button>
+      </div>
+    </div>
+  );
 }
 
