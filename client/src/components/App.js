@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import NavBar from './NavBar'
+import NavigationBar from './NavBar'
 import Home from './Home'
 import Workspace from './Workspace'
 import Background from './Background'
@@ -9,12 +9,14 @@ import Instruction from './Instruction'
 import FooterBar from './FooterBar'
 import ModelDetails from './ModelDetails'
 import TempWS from './TempWS'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 export class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <NavBar />
+          <NavigationBar />
           <Route exact path="/" component={Home} />
           <Route exact path="/tempworkspace" component={TempWS} />
           <Route exact path="/workspace" component={Workspace} />
