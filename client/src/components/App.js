@@ -6,7 +6,6 @@ import Workspace from './Workspace'
 import Background from './Background'
 import About from './About'
 import Instruction from './Instruction'
-import FooterBar from './FooterBar'
 import ModelDetails from './ModelDetails'
 import TempWS from './TempWS'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,7 +23,6 @@ export class App extends Component {
           <Route exact path="/background" component={Background} />
           <Route exact path="/about" component={About} />
           <Route exact path="/instruction" component={Instruction} />
-          <FooterBar />
         </div>
       </BrowserRouter>
     )

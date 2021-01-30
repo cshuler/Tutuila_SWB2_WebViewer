@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ReactMapGL, { Source, Layer } from 'react-map-gl'
+import ReactMapGL from 'react-map-gl'
 import Button from '@material-ui/core/Button';
 import "./MyMap.css"
 import chroma from 'chroma-js'
@@ -10,8 +10,6 @@ var mapScale = chroma.scale(['blue', 'yellow', 'red'])
   .domain([0, 180])
 
 //var fillColor = mapScale(gridcode)
-
-
 
 export const dataLayer = {
   id: 'data',
@@ -63,14 +61,15 @@ export default function TempWS() {
           setViewport({ ...newViewport })
         }}
         mapStyle={mapStyling.style}
+        style={{ marginTop: '10px' }}
       >
       </ReactMapGL>
 
-      <h1 style={{textAlign: "center"}}>{selectedMap.map}</h1>
+      <h1 style={{ textAlign: "center" }}>{selectedMap.map}</h1>
 
-      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Button
-          variant="outlined" 
+          variant="outlined"
           color="primary"
           style={{
             margin: '5px'
@@ -78,13 +77,13 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
-            setSelectedMap({map: "Run Off"})
+            setSelectedMap({ map: "Run Off" })
           }}
         >
           Run Off
         </Button>
         <Button
-          variant="outlined" 
+          variant="outlined"
           color="primary"
           style={{
             margin: '5px'
@@ -92,13 +91,13 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" })
-            setSelectedMap({map: "Recharge"})
+            setSelectedMap({ map: "Recharge" })
           }}
         >
           Recharge
         </Button>
         <Button
-          variant="outlined" 
+          variant="outlined"
           color="primary"
           style={{
             margin: '5px'
@@ -106,13 +105,13 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" })
-            setSelectedMap({map: "Interception"})
+            setSelectedMap({ map: "Interception" })
           }}
         >
           Interception
         </Button>
         <Button
-          variant="outlined" 
+          variant="outlined"
           color="primary"
           style={{
             margin: '5px'
@@ -120,13 +119,13 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" })
-            setSelectedMap({map: "ET"})
+            setSelectedMap({ map: "ET" })
           }}
         >
           ET
         </Button>
         <Button
-          variant="outlined" 
+          variant="outlined"
           color="primary"
           style={{
             margin: '5px'
@@ -134,7 +133,7 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" })
-            setSelectedMap({map: "Rainfall"})
+            setSelectedMap({ map: "Rainfall" })
           }}
         >
           Rainfall

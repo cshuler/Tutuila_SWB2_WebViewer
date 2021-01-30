@@ -1,38 +1,39 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import React from 'react'
+import { Navbar, Nav } from 'react-bootstrap';
 
-export class NavigationBar extends Component {
-    render() {
+export default function NavigationBar (){
         return (
             <div>
-                
-                    <Navbar.Brand href="/">Tutuila</Navbar.Brand>
-                    <Nav className="mr-auto" justify variant="tabs" defaultActiveKey="/">
+               
+                <Navbar bg='primary' variant="dark" >
+
+                    <Navbar.Brand href="/" eventKey="home">Tutuila</Navbar.Brand>
+                    <Nav justify variant="pill">
                         <Nav.Item>
-                            <Nav.Link href="/tempworkspace">Temp</Nav.Link>
+                            <Nav.Link href="/tempworkspace" eventKey="tempworkspace" >Temp</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/workspace">Workspace</Nav.Link>
+                            <Nav.Link href="/workspace" eventKey="workspace" >Workspace</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/modeldetails">Details</Nav.Link>
+                            <Nav.Link href="/modeldetails" eventKey="modeldetails" >Details</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/background">Background</Nav.Link>
+                            <Nav.Link href="/background" eventKey="background" >Background</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/about">About</Nav.Link>
+                            <Nav.Link href="/about" eventKey="about" >About</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/instruction">Instruction</Nav.Link>
+                            <Nav.Link href="/instruction" eventKey="instruction" >Instruction</Nav.Link>
                         </Nav.Item>
                     </Nav>
+                </Navbar>
+   
                     
                 
 
             </div>
         )
-    }
+    
 }
-export default NavigationBar
