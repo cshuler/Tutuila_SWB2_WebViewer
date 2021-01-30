@@ -123,7 +123,7 @@ export default function TempWS() {
           }}
 
           onClick={() => {
-            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj5l1j610es17qx19t8dim8" })
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" })
           }}
         >
           Rainfall
