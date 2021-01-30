@@ -48,6 +48,9 @@ export default function TempWS() {
   const [mapStyling, setMapStyling] = useState({
     style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"
   })
+  const [selectedMap, setSelectedMap] = useState({
+    map: 'Run Off'
+  })
 
   return (
     <div>
@@ -62,7 +65,10 @@ export default function TempWS() {
         mapStyle={mapStyling.style}
       >
       </ReactMapGL>
-      <div>
+
+      <h1 style={{textAlign: "center"}}>{selectedMap.map}</h1>
+
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <Button
           variant="outlined" 
           color="primary"
@@ -72,6 +78,7 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+            setSelectedMap({map: "Run Off"})
           }}
         >
           Run Off
@@ -85,6 +92,7 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" })
+            setSelectedMap({map: "Recharge"})
           }}
         >
           Recharge
@@ -98,6 +106,7 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" })
+            setSelectedMap({map: "Interception"})
           }}
         >
           Interception
@@ -111,6 +120,7 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" })
+            setSelectedMap({map: "ET"})
           }}
         >
           ET
@@ -124,6 +134,7 @@ export default function TempWS() {
 
           onClick={() => {
             setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" })
+            setSelectedMap({map: "Rainfall"})
           }}
         >
           Rainfall
