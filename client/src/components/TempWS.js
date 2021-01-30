@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ReactMapGL from 'react-map-gl'
+import ReactMapGL, { StaticMap } from 'react-map-gl'
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider'
 import "./MyMap.css"
@@ -45,14 +45,15 @@ export default function TempWS() {
     zoom: 10.5,
   });
   const [mapStyling, setMapStyling] = useState({
-    style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"
+    style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
+    opacity: "50%"
   })
   const [selectedMap, setSelectedMap] = useState({
     map: 'Run Off'
   })
   const [opacityValue, setOpacityValue] = useState({
-    level: 50,
-    percentage: "50%"
+    level: 100,
+    percentage: "100%"
   })
 
   return (
@@ -65,13 +66,27 @@ export default function TempWS() {
         onViewportChange={(newViewport) => {
           setViewport({ ...newViewport })
         }}
-        mapStyle={mapStyling.style}
-        style={{ marginTop: '10px', opacity: opacityValue.percentage }}
-      >
+
+        style={{ marginTop: '10px'}}>
+
+        <ReactMapGL
+          {...viewport}
+          maxZoom={20}
+          minZoom={10.5}
+          mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
+          onViewportChange={(newViewport) => {
+            setViewport({ ...newViewport })
+          }}
+          mapStyle={mapStyling.style}
+          style={{ opacity: opacityValue.percentage }}
+        >
+
+
+        </ReactMapGL>
       </ReactMapGL>
 
-      <Slider value={opacityValue.level} onChange={(event, newValue) => {setOpacityValue({level: newValue, percentage: `${newValue}%`})}} aria-labelledby="continuous-slider" />
-        <p>{opacityValue.level}</p>
+      <Slider value={opacityValue.level} onChange={(event, newValue) => { setOpacityValue({ level: newValue, percentage: `${newValue}%` }) }} aria-labelledby="continuous-slider" />
+      <p>{opacityValue.level}</p>
       <h1 style={{ textAlign: "center" }}>{selectedMap.map}</h1>
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
