@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactMapGL from 'react-map-gl'
 import Button from '@material-ui/core/Button';
+import Slider from '@material-ui/core/Slider'
 import "./MyMap.css"
 import chroma from 'chroma-js'
 //import {dataLayer} from './map-style'
@@ -49,6 +50,10 @@ export default function TempWS() {
   const [selectedMap, setSelectedMap] = useState({
     map: 'Run Off'
   })
+  const [opacityValue, setOpacityValue] = useState({
+    level: 50,
+    percentage: "50%"
+  })
 
   return (
     <div>
@@ -61,10 +66,12 @@ export default function TempWS() {
           setViewport({ ...newViewport })
         }}
         mapStyle={mapStyling.style}
-        style={{ marginTop: '10px' }}
+        style={{ marginTop: '10px', opacity: opacityValue.percentage }}
       >
       </ReactMapGL>
 
+      <Slider value={opacityValue.level} onChange={(event, newValue) => {setOpacityValue({level: newValue, percentage: `${newValue}%`})}} aria-labelledby="continuous-slider" />
+        <p>{opacityValue.level}</p>
       <h1 style={{ textAlign: "center" }}>{selectedMap.map}</h1>
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
