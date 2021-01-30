@@ -6,15 +6,6 @@ import chroma from 'chroma-js'
 //import {dataLayer} from './map-style'
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require('../config/keys')
 
-//const worker = new Worker('./worker.js')
-
-
-// const ETData = require('../data/geoJson_files/ET_prj_cleaned.json')
-// const interceptionData = require('../data/geoJson_files/interception_prj_cleaned.json')
-// const rainFallData = require('../data/geoJson_files/rainfall_prj_cleaned.json')
-// const rechargeData = require('../data/geoJson_files/recharge_prj_cleaned.json')
-const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
-
 var mapScale = chroma.scale(['blue', 'yellow', 'red'])
   .domain([0, 180])
 
@@ -93,7 +84,33 @@ export default function TempWS() {
           }}
 
           onClick={() => {
-            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" })
+          }}
+        >
+          Recharge
+        </Button>
+        <Button
+          variant="outlined" 
+          color="primary"
+          style={{
+            margin: '5px'
+          }}
+
+          onClick={() => {
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" })
+          }}
+        >
+          Interception
+        </Button>
+        <Button
+          variant="outlined" 
+          color="primary"
+          style={{
+            margin: '5px'
+          }}
+
+          onClick={() => {
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" })
           }}
         >
           ET
@@ -106,36 +123,10 @@ export default function TempWS() {
           }}
 
           onClick={() => {
-            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkj5l1j610es17qx19t8dim8" })
           }}
         >
-          Item 3
-        </Button>
-        <Button
-          variant="outlined" 
-          color="primary"
-          style={{
-            margin: '5px'
-          }}
-
-          onClick={() => {
-            setMapStyling({ style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
-          }}
-        >
-          Item 4
-        </Button>
-        <Button
-          variant="outlined" 
-          color="primary"
-          style={{
-            margin: '5px'
-          }}
-
-          onClick={() => {
-            setMapStyling({ style: "apbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
-          }}
-        >
-          Item 5
+          Rainfall
         </Button>
       </div>
     </div>

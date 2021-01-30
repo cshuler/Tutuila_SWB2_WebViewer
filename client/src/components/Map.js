@@ -9,8 +9,12 @@ import chroma from 'chroma-js'
 // const interceptionData = require('../data/geoJson_files/interception_prj_cleaned.json')
 // const rainFallData = require('../data/geoJson_files/rainfall_prj_cleaned.json')
 // const rechargeData = require('../data/geoJson_files/recharge_prj_cleaned.json')
-const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
+//const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
 
+//<LayersControl.Overlay name="Run Off">
+  //                              <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} />
+    //                            {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
+      //                      </LayersControl.Overlay>
 
 // const gp = require("geojson-precision")
 
@@ -97,11 +101,7 @@ export class Map extends Component {
                                 />
                             </LayersControl.BaseLayer>
 
-                            <LayersControl.Overlay name="Run Off">
-                                <GeoJSON key='my-geojson' style={this.cellStyle} data={runOffData.features} />
-                                {/* <GeoJSON key='my-geojson' style={this.cellStyle} data={this.props.data.features} onEachFeature={this.onEachCell} /> */}
-
-                            </LayersControl.Overlay>
+                            
 
                             <LayersControl.Overlay name="Marker with popup">
                                 <Marker position={mapCenter}>
