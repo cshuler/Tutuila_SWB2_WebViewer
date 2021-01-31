@@ -66,7 +66,7 @@ export default function TempWS() {
         onViewportChange={(newViewport) => {
           setViewport({ ...newViewport })
         }}
-
+        mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
         style={{ marginTop: '10px'}}>
 
         <ReactMapGL
