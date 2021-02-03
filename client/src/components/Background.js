@@ -5,7 +5,7 @@ export class Background extends Component {
         return (
             <div>
                 <div style={{textAlign:'center'}}>
-                    <h3>Model Details</h3>
+                    <h3>Background</h3>
                 </div>
                <p>content</p> 
             </div>
