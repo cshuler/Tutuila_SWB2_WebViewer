@@ -10,9 +10,6 @@ export default function NavigationBar (){
                     <Navbar.Brand href="/" eventKey="home">Tutuila</Navbar.Brand>
                     <Nav justify variant="pill">
                         <Nav.Item>
-                            <Nav.Link href="/tempworkspace" eventKey="tempworkspace" >Temp</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
                             <Nav.Link href="/workspace" eventKey="workspace" >Workspace</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>

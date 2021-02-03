@@ -7,7 +7,6 @@ import Background from './Background'
 import About from './About'
 import Instruction from './Instruction'
 import ModelDetails from './ModelDetails'
-import TempWS from './TempWS'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export class App extends Component {
@@ -17,7 +16,6 @@ export class App extends Component {
         <div className="container">
           <NavigationBar />
           <Route exact path="/" component={Home} />
-          <Route exact path="/tempworkspace" component={TempWS} />
           <Route exact path="/workspace" component={Workspace} />
           <Route exact path="/modeldetails" component={ModelDetails} />
           <Route exact path="/background" component={Background} />
