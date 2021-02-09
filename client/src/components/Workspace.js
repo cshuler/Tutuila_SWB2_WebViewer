@@ -67,7 +67,9 @@ export default function Workspace() {
           setViewport({ ...newViewport })
         }}
         mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
+        attributionControl={false}
         style={{ marginTop: '10px'}}>
+  
 
         <ReactMapGL
           {...viewport}
@@ -79,6 +81,7 @@ export default function Workspace() {
           }}
           mapStyle={mapStyling.style}
           style={{ opacity: opacityValue.percentage }}
+          
         >
 
 
