@@ -7,7 +7,7 @@ export default function NavigationBar (){
                
                 <Navbar bg='primary' variant="dark" >
 
-                    <Navbar.Brand href="/" eventKey="home">Tutuila</Navbar.Brand>
+                    <Navbar.Brand href="/" eventkey="home">Tutuila</Navbar.Brand>
                     <Nav justify variant="pill">
                         <Nav.Item>
                             <Nav.Link href="/workspace" eventKey="workspace" >Workspace</Nav.Link>
