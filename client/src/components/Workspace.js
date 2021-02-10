@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import ReactMapGL, { StaticMap } from 'react-map-gl'
+import ReactMapGL, { WebMercatorViewport } from 'react-map-gl'
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider'
 import "./MyMap.css"
 import chroma from 'chroma-js'
-//import {dataLayer} from './map-style'
+
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require('../config/keys')
 
 var mapScale = chroma.scale(['blue', 'yellow', 'red'])
@@ -12,27 +12,7 @@ var mapScale = chroma.scale(['blue', 'yellow', 'red'])
 
 //var fillColor = mapScale(gridcode)
 
-export const dataLayer = {
-  id: 'data',
-  type: 'fill',
-  paint: {
-    'fill-color': {
-      property: 'gridCode',
-      stops: [
-        [0, '#3288bd'],
-        [1, '#66c2a5'],
-        [2, '#abdda4'],
-        [3, '#e6f598'],
-        [4, '#ffffbf'],
-        [5, '#fee08b'],
-        [6, '#fdae61'],
-        [7, '#f46d43'],
-        [8, '#d53e4f']
-      ]
-    },
-    'fill-opacity': 0.5
-  }
-};
+
 
 //var highestGridcode = 0
 
@@ -55,6 +35,11 @@ export default function Workspace() {
     level: 100,
     percentage: "100%"
   })
+  const check =()=>{
+    const vp = new WebMercatorViewport(viewport)
+    const aloha = vp.getBounds()
+    console.log('something', aloha)
+  }
 
   return (
     <div>
@@ -78,13 +63,12 @@ export default function Workspace() {
           mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
             setViewport({ ...newViewport })
+            check()
           }}
           mapStyle={mapStyling.style}
           style={{ opacity: opacityValue.percentage }}
           
         >
-
-
         </ReactMapGL>
       </ReactMapGL>
 
