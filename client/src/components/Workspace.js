@@ -3,18 +3,10 @@ import ReactMapGL, { WebMercatorViewport } from 'react-map-gl'
 import Button from '@material-ui/core/Button';
 import Slider from '@material-ui/core/Slider'
 import "./MyMap.css"
-import chroma from 'chroma-js'
 
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require('../config/keys')
+const runOffData = require('../data/geoJson_files/runoff_prj_cleaned.json')
 
-var mapScale = chroma.scale(['blue', 'yellow', 'red'])
-  .domain([0, 180])
-
-//var fillColor = mapScale(gridcode)
-
-
-
-//var highestGridcode = 0
 
 export default function Workspace() {
   const [viewport, setViewport] = useState({
@@ -35,11 +27,45 @@ export default function Workspace() {
     level: 100,
     percentage: "100%"
   })
-  const check =()=>{
+
+  const check = () => {
     const vp = new WebMercatorViewport(viewport)
-    const aloha = vp.getBounds()
-    console.log('something', aloha)
+    const theBounds = vp.getBounds()
+    console.log('something', theBounds)
+
+    //go through each runoff geojson
+    var numberthing = 0
+    runOffData.features.forEach(feature => numberthing += Number(feature.properties.gridCode))
+    console.log(runOffData.features.forEach(y => console.log(y.geometry.coordinates)))
+    console.log('numberthing', numberthing)
+    //filter data to data within bounds
+    //sum the gridCode
+
+    //go through ET geojson
+    //filter data to data within bounds
+    //sum the gridCode
+
+    //go through intercept geojson
+    //filter data to data within bounds
+    //sum the gridCode
+
+    //go through recharge geojson
+    //filter data to data within bounds
+    //sum the gridCode
+
+    //the sum of all the gridcodes go into an array
+
+    //the array goes to the State
+
+
+    //// the AnimatedPieSVG component will plug into the data in the state
+
+
   }
+
+  const [pieData, setPieData] = useState({
+    data: null
+  })
 
   return (
     <div>
@@ -53,8 +79,8 @@ export default function Workspace() {
         }}
         mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
         attributionControl={false}
-        style={{ marginTop: '10px'}}>
-  
+        style={{ marginTop: '10px' }}>
+
 
         <ReactMapGL
           {...viewport}
@@ -67,7 +93,7 @@ export default function Workspace() {
           }}
           mapStyle={mapStyling.style}
           style={{ opacity: opacityValue.percentage }}
-          
+
         >
         </ReactMapGL>
       </ReactMapGL>
