@@ -28,66 +28,21 @@ export default function Workspace() {
   });
 
   const check = () => {
-    const vp = new WebMercatorViewport(viewport);
 
+    //this gets the bounds of the viewer
+    const vp = new WebMercatorViewport(viewport);
     const theBounds = vp.getBounds();
-    console.log("theBounds", theBounds);
     const westBound = Number(theBounds[0][0]);
     const southBound = Number(theBounds[0][1]);
     const eastBound = Number(theBounds[1][0]);
     const northBound = Number(theBounds[1][1]);
 
-    console.log("westBound", westBound);
-    console.log("southBound", southBound);
-    console.log("eastBound", eastBound);
-    console.log("northBound", northBound);
+    //this sets the value number for the piechart
+    var runOffGridCodeTotal = 0;
 
-    console.log(
-      "polygon coordinates",
-      runOffData.features[0].geometry.coordinates[0]
-    );
-
-    // const northEastCorner = runOffData.features[0].geometry.coordinates[0][1];
-    // console.log("northEastCorner", northEastCorner);
-
-    // const southWestCorner = runOffData.features[0].geometry.coordinates[0][3];
-    // console.log("southWestCorner", southWestCorner);
-
-    // let eastWall = northEastCorner[0];
-    // let northWall = northEastCorner[1];
-    // let westWall = southWestCorner[0];
-    // let southWall = southWestCorner[1];
-
-    // console.log("eastwall", eastWall);
-    // console.log("northWall", northWall);
-    // console.log("westWall", westWall);
-    // console.log("southWall", southWall);
-
-    //go through each runoff geojson
-    var gridCodeTotal = 0;
-    // runOffData.features
-    // .filter((polygon) => {
-    //   // let northEastCorner = polygon.geometry.coordinates[0][1];
-    //   // let southWestCorner = polygon.geometry.coordinates[0][3];
-
-    //   let eastWall = Number(polygon.geometry.coordinates[0][1][0]);
-    //   let northWall = Number(polygon.geometry.coordinates[0][1][1]);
-    //   let westWall = Number(polygon.geometry.coordinates[0][3][0]);
-    //   let southWall = Number(polygon.geometry.coordinates[0][3][1]);
-    //   return (
-    //     eastWall >= eastBound &&
-    //     westWall <= westBound &&
-    //     northWall <= northBound &&
-    //     southWall >= southBound
-    //   );
-    // })
-    //   .forEach((feature) => {
-    //     //let eastSide = feature.geometry.coordinate[]
-    //     gridCodeTotal += Number(feature.properties.gridCode);
-    //   })
-
-
-    const something = runOffData.features
+    //this filters using the bounds
+    //filters out if the any of the corners of the feature goes out of the view
+    const runOffFilteredData = runOffData.features
     .filter(feature =>
       Number(feature.geometry.coordinates[0][1][0]) <= eastBound
     )
@@ -101,21 +56,15 @@ export default function Workspace() {
       Number(feature.geometry.coordinates[0][3][1] >= southBound)
     )
 
-    something.forEach((feature) => {
-      //let eastSide = feature.geometry.coordinate[]
-      gridCodeTotal += Number(feature.properties.gridCode);
+    // all the features that made it through the filter
+    // make each add their gridCode
+    runOffFilteredData.forEach((feature) => {
+      runOffFilteredData += Number(feature.properties.gridCode);
     })
     
-
-    console.log('something length', something.length)
+    console.log('something length', runOffFilteredData.length)
     console.log('length', runOffData.features.length)
-
-
-
-    //console.log(runOffData.features.forEach(y => console.log(y.geometry.coordinates)))
-    console.log("gridCodeTotal", gridCodeTotal);
-    //filter data to data within bounds
-    //sum the gridCode
+    console.log("runOffFilteredData", runOffFilteredData);
 
     //go through ET geojson
     //filter data to data within bounds
