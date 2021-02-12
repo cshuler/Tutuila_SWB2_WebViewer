@@ -29,7 +29,9 @@ export default function Workspace() {
     level: 100,
     percentage: "100%",
   });
-  const [pieDataArray, setPieDataArray] = useState([])
+  const [pieDataArray, setPieDataArray] = useState({
+    array: []
+  })
 
   const check = () => {
 
@@ -43,7 +45,7 @@ export default function Workspace() {
 
     //this sets the value number for the piechart
     var runOffGridCodeTotal = 0;
-    setPieDataArray([])
+    setPieDataArray({array: []})
 
     //this filters using the bounds
     //filters out if the any of the corners of the feature goes out of the view
@@ -66,14 +68,15 @@ export default function Workspace() {
     runOffFilteredData.forEach((feature) => {
       runOffGridCodeTotal += Number(feature.properties.gridCode);
     })
+    console.log('type', typeof(pieDataArray.array))
+    console.log('value of state', pieDataArray.array)
+    setPieDataArray(pieDataArray.array.push(runOffGridCodeTotal))
 
-    setPieDataArray(pieDataArray.push(runOffGridCodeTotal))
+    console.log('state array', pieDataArray.array)
 
-    console.log('state array', pieDataArray)
-
-    console.log('something length', runOffFilteredData.length)
-    console.log('length', runOffData.features.length)
-    console.log("runOffGridCodeTotal", runOffGridCodeTotal);
+    // console.log('something length', runOffFilteredData.length)
+    // console.log('length', runOffData.features.length)
+    //console.log("runOffGridCodeTotal", runOffGridCodeTotal);
 
     //go through ET geojson
     //filter data to data within bounds
@@ -98,7 +101,7 @@ export default function Workspace() {
       eTGridCodeTotal += Number(feature.properties.gridCode);
     })
 
-    setPieDataArray(pieDataArray.push(eTGridCodeTotal))
+    setPieDataArray(pieDataArray.array.push(eTGridCodeTotal))
 
     console.log('second look at state', pieDataArray)
 
@@ -126,7 +129,7 @@ export default function Workspace() {
       interceptionGridCodeTotal += Number(feature.properties.gridCode);
     })
 
-    setPieDataArray(pieDataArray.push(interceptionGridCodeTotal))
+    setPieDataArray(pieDataArray.array.push(interceptionGridCodeTotal))
 
     console.log('third loook', pieDataArray)
 
@@ -154,7 +157,7 @@ export default function Workspace() {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     })
 
-    setPieDataArray(pieDataArray.push(rechargeGridCodeTotal))
+    setPieDataArray(pieDataArray.array.push(rechargeGridCodeTotal))
 
     console.log('4th look', pieDataArray)
 
