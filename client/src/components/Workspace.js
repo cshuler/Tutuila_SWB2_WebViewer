@@ -6,6 +6,9 @@ import "./MyMap.css";
 
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 const runOffData = require("../data/geoJson_files/runoff_prj_cleaned.json");
+const eTData = require("../data/geoJson_files/ET_prj_cleaned.json")
+const interceptionData = require("../data/geoJson_files/interception_prj_cleaned.json")
+const rechargeData = require("../data/geoJson_files/recharge_prj_cleaned.json")
 
 export default function Workspace() {
   const [viewport, setViewport] = useState({
@@ -26,6 +29,7 @@ export default function Workspace() {
     level: 100,
     percentage: "100%",
   });
+  const [pieDataArray, setPieDataArray] = useState([])
 
   const check = () => {
 
@@ -39,6 +43,7 @@ export default function Workspace() {
 
     //this sets the value number for the piechart
     var runOffGridCodeTotal = 0;
+    setPieDataArray([])
 
     //this filters using the bounds
     //filters out if the any of the corners of the feature goes out of the view
@@ -59,24 +64,99 @@ export default function Workspace() {
     // all the features that made it through the filter
     // make each add their gridCode
     runOffFilteredData.forEach((feature) => {
-      runOffFilteredData += Number(feature.properties.gridCode);
+      runOffGridCodeTotal += Number(feature.properties.gridCode);
     })
-    
+
+    setPieDataArray(pieDataArray.push(runOffGridCodeTotal))
+
+    console.log('state array', pieDataArray)
+
     console.log('something length', runOffFilteredData.length)
     console.log('length', runOffData.features.length)
-    console.log("runOffFilteredData", runOffFilteredData);
+    console.log("runOffGridCodeTotal", runOffGridCodeTotal);
 
     //go through ET geojson
     //filter data to data within bounds
     //sum the gridCode
+    var eTGridCodeTotal = 0;
+
+    const eTFilteredData = eTData.features
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+    )
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][1][1]) <= northBound
+    )
+    .filter(feature => 
+      Number(feature.geometry.coordinates[0][3][0]) >= westBound
+    )
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][3][1] >= southBound)
+    )
+
+    eTFilteredData.forEach((feature) => {
+      eTGridCodeTotal += Number(feature.properties.gridCode);
+    })
+
+    setPieDataArray(pieDataArray.push(eTGridCodeTotal))
+
+    console.log('second look at state', pieDataArray)
 
     //go through intercept geojson
     //filter data to data within bounds
     //sum the gridCode
 
+    var interceptionGridCodeTotal = 0;
+
+    const interceptionFilteredData = interceptionData.features
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+    )
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][1][1]) <= northBound
+    )
+    .filter(feature => 
+      Number(feature.geometry.coordinates[0][3][0]) >= westBound
+    )
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][3][1] >= southBound)
+    )
+
+    interceptionFilteredData.forEach((feature) => {
+      interceptionGridCodeTotal += Number(feature.properties.gridCode);
+    })
+
+    setPieDataArray(pieDataArray.push(interceptionGridCodeTotal))
+
+    console.log('third loook', pieDataArray)
+
     //go through recharge geojson
     //filter data to data within bounds
     //sum the gridCode
+
+    var rechargeGridCodeTotal = 0;
+
+    const rechargeFilteredData = rechargeData.features
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+    )
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][1][1]) <= northBound
+    )
+    .filter(feature => 
+      Number(feature.geometry.coordinates[0][3][0]) >= westBound
+    )
+    .filter(feature =>
+      Number(feature.geometry.coordinates[0][3][1] >= southBound)
+    )
+
+    rechargeFilteredData.forEach((feature) => {
+      rechargeGridCodeTotal += Number(feature.properties.gridCode);
+    })
+
+    setPieDataArray(pieDataArray.push(rechargeGridCodeTotal))
+
+    console.log('4th look', pieDataArray)
 
     //the sum of all the gridcodes go into an array
 
