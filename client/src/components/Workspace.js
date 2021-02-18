@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import ReactMapGL, { WebMercatorViewport } from "react-map-gl";
 import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/core/Slider";
@@ -10,33 +10,30 @@ const eTData = require("../data/geoJson_files/ET_prj_cleaned.json")
 const interceptionData = require("../data/geoJson_files/interception_prj_cleaned.json")
 const rechargeData = require("../data/geoJson_files/recharge_prj_cleaned.json")
 
-export default function Workspace() {
-  const [viewport, setViewport] = useState({
-    latitude: -14.3,
-    longitude: -170.7,
-    width: "100%",
-    height: "500px",
-    zoom: 10.5,
-  });
-  const [mapStyling, setMapStyling] = useState({
-    style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
-    opacity: "50%",
-  });
-  const [selectedMap, setSelectedMap] = useState({
-    map: "Run Off",
-  });
-  const [opacityValue, setOpacityValue] = useState({
-    level: 100,
-    percentage: "100%",
-  });
-  const [pieDataArray, setPieDataArray] = useState({
-    array: []
-  })
+export default class Workspace extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            viewport: {
+                latitude: -14.3,
+                longitude: -170.7,
+                width: "100%",
+                height: "500px",
+                zoom: 10.5,},
+            mapStylingStyle: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
+            mapStylingOpacity: "50%",
+            selectedMap: "Run off",
+            opacityValueLevel: 100, 
+            opacityValuePercentage: "100%", 
+            pieDataArray: []
+        }
+        this.check = this.check.bind(this)
+    }
 
-  const check = () => {
+  check(){
 
     //this gets the bounds of the viewer
-    const vp = new WebMercatorViewport(viewport);
+    const vp = new WebMercatorViewport(this.state.viewport);
     const theBounds = vp.getBounds();
     const westBound = Number(theBounds[0][0]);
     const southBound = Number(theBounds[0][1]);
@@ -45,9 +42,9 @@ export default function Workspace() {
 
     //this sets the value number for the piechart
     var runOffGridCodeTotal = 0;
-    setPieDataArray({array: []})
+    this.setState({pieDataArray: []})
 
-    console.log('first', pieDataArray)
+    console.log('first', this.state.pieDataArray)
 
     //this filters using the bounds
     //filters out if the any of the corners of the feature goes out of the view
@@ -70,15 +67,19 @@ export default function Workspace() {
     runOffFilteredData.forEach((feature) => {
       runOffGridCodeTotal += Number(feature.properties.gridCode);
     })
-    console.log('type', typeof(pieDataArray.array))
-    console.log('second', pieDataArray)
 
-    console.log('push', pieDataArray.array)
+    console.log('total count', runOffGridCodeTotal)
 
+    console.log('type', typeof(this.state.pieDataArray))
+    console.log('second', this.state.pieDataArray)
 
-    setPieDataArray(pieDataArray.array.push(runOffGridCodeTotal))
+    console.log('push', this.state.pieDataArray)
 
-    console.log('third', pieDataArray)
+    let joined = this.state.pieDataArray.concat(runOffGridCodeTotal)
+    console.log('joined', joined)
+    this.setState({pieDataArray: joined})
+
+    console.log('third', this.state.pieDataArray)
 
                             // console.log('something length', runOffFilteredData.length)
                             // console.log('length', runOffData.features.length)
@@ -175,131 +176,115 @@ export default function Workspace() {
                                 //// the AnimatedPieSVG component will plug into the data in the state
   };
 
-  const [pieData, setPieData] = useState({
-    data: null,
-  });
+  render(){
 
-  return (
-    <div>
+      return (
+          <div>
       <ReactMapGL
-        {...viewport}
+        {...this.state.viewport}
         maxZoom={20}
         minZoom={10.5}
         mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={(newViewport) => {
-          setViewport({ ...newViewport });
+            this.setState({viewport: newViewport})
         }}
         mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
         attributionControl={false}
         style={{ marginTop: "10px" }}
-      >
+        >
         <ReactMapGL
-          {...viewport}
+          {...this.state.viewport}
           maxZoom={20}
           minZoom={10.5}
           mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
-            setViewport({ ...newViewport });
-            check();
-          }}
-          mapStyle={mapStyling.style}
-          style={{ opacity: opacityValue.percentage }}
-        ></ReactMapGL>
+              this.setState({viewport: newViewport})
+              this.check();
+            }}
+            mapStyle={this.state.mapStylingStyle}
+            style={{ opacity: this.state.opacityValuePercentage }}
+            ></ReactMapGL>
       </ReactMapGL>
 
       <Slider
-        value={opacityValue.level}
+        value={this.state.opacityValueLevel}
         onChange={(event, newValue) => {
-          setOpacityValue({ level: newValue, percentage: `${newValue}%` });
+            this.setState({opacityValueLevel: newValue, opacityValuePercentage: `${newValue}%`})
         }}
         aria-labelledby="continuous-slider"
-      />
-      <p>{opacityValue.level}</p>
-      <h1 style={{ textAlign: "center" }}>{selectedMap.map}</h1>
+        />
+      <p>{this.state.opacityValueLevel}</p>
+      <h1 style={{ textAlign: "center" }}>{this.state.selectedMap}</h1>
 
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
         }}
-      >
+        >
         <Button
           variant="outlined"
           color="primary"
           style={{
-            margin: "5px",
-          }}
-          onClick={() => {
-            setMapStyling({
-              style: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
-            });
-            setSelectedMap({ map: "Run Off" });
-          }}
-        >
+              margin: "5px",
+            }}
+            onClick={() => {
+                this.state({selectedMap: "Run Off", mapStylingStyle: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"})
+            }}
+            >
           Run Off
         </Button>
         <Button
           variant="outlined"
           color="primary"
           style={{
-            margin: "5px",
-          }}
-          onClick={() => {
-            setMapStyling({
-              style: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0",
-            });
-            setSelectedMap({ map: "Recharge" });
-          }}
-        >
+              margin: "5px",
+            }}
+            onClick={() => {
+                this.state({selectedMap: "Recharge", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0"})
+            }}
+            >
           Recharge
         </Button>
         <Button
           variant="outlined"
           color="primary"
           style={{
-            margin: "5px",
-          }}
-          onClick={() => {
-            setMapStyling({
-              style: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi",
-            });
-            setSelectedMap({ map: "Interception" });
-          }}
-        >
+              margin: "5px",
+            }}
+            onClick={() => {
+                this.state({selectedMap: "Interception", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi"})
+            }}
+            >
           Interception
         </Button>
         <Button
           variant="outlined"
           color="primary"
           style={{
-            margin: "5px",
-          }}
-          onClick={() => {
-            setMapStyling({
-              style: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1",
-            });
-            setSelectedMap({ map: "ET" });
-          }}
-        >
+              margin: "5px",
+            }}
+            onClick={() => {
+                this.state({selectedMap: "ET", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1"})
+            }}
+            >
           ET
         </Button>
         <Button
           variant="outlined"
           color="primary"
           style={{
-            margin: "5px",
-          }}
-          onClick={() => {
-            setMapStyling({
-              style: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p",
-            });
-            setSelectedMap({ map: "Rainfall" });
-          }}
-        >
+              margin: "5px",
+            }}
+            onClick={() => {
+                this.state({selectedMap: "Rainfall", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p"})
+            }}
+            >
           Rainfall
         </Button>
       </div>
     </div>
   );
+}
 }
