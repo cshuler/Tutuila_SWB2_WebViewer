@@ -47,6 +47,8 @@ export default function Workspace() {
     var runOffGridCodeTotal = 0;
     setPieDataArray({array: []})
 
+    console.log('first', pieDataArray)
+
     //this filters using the bounds
     //filters out if the any of the corners of the feature goes out of the view
     const runOffFilteredData = runOffData.features
@@ -69,103 +71,108 @@ export default function Workspace() {
       runOffGridCodeTotal += Number(feature.properties.gridCode);
     })
     console.log('type', typeof(pieDataArray.array))
-    console.log('value of state', pieDataArray.array)
+    console.log('second', pieDataArray)
+
+    console.log('push', pieDataArray.array)
+
+
     setPieDataArray(pieDataArray.array.push(runOffGridCodeTotal))
 
-    console.log('state array', pieDataArray.array)
+    console.log('third', pieDataArray)
 
-    // console.log('something length', runOffFilteredData.length)
-    // console.log('length', runOffData.features.length)
-    //console.log("runOffGridCodeTotal", runOffGridCodeTotal);
+                            // console.log('something length', runOffFilteredData.length)
+                            // console.log('length', runOffData.features.length)
+                            //console.log("runOffGridCodeTotal", runOffGridCodeTotal);
 
-    //go through ET geojson
-    //filter data to data within bounds
-    //sum the gridCode
-    var eTGridCodeTotal = 0;
+                            //go through ET geojson
+                            //filter data to data within bounds
+                            //sum the gridCode
+                            
+    // var eTGridCodeTotal = 0;
 
-    const eTFilteredData = eTData.features
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][1][0]) <= eastBound
-    )
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][1][1]) <= northBound
-    )
-    .filter(feature => 
-      Number(feature.geometry.coordinates[0][3][0]) >= westBound
-    )
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][3][1] >= southBound)
-    )
+    // const eTFilteredData = eTData.features
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+    // )
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][1][1]) <= northBound
+    // )
+    // .filter(feature => 
+    //   Number(feature.geometry.coordinates[0][3][0]) >= westBound
+    // )
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][3][1] >= southBound)
+    // )
 
-    eTFilteredData.forEach((feature) => {
-      eTGridCodeTotal += Number(feature.properties.gridCode);
-    })
+    // eTFilteredData.forEach((feature) => {
+    //   eTGridCodeTotal += Number(feature.properties.gridCode);
+    // })
 
-    setPieDataArray(pieDataArray.array.push(eTGridCodeTotal))
+    // setPieDataArray(pieDataArray.array.push(eTGridCodeTotal))
 
-    console.log('second look at state', pieDataArray)
+    // console.log('second look at state', pieDataArray)
 
-    //go through intercept geojson
-    //filter data to data within bounds
-    //sum the gridCode
+                              //go through intercept geojson
+                              //filter data to data within bounds
+                              //sum the gridCode
 
-    var interceptionGridCodeTotal = 0;
+    // var interceptionGridCodeTotal = 0;
 
-    const interceptionFilteredData = interceptionData.features
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][1][0]) <= eastBound
-    )
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][1][1]) <= northBound
-    )
-    .filter(feature => 
-      Number(feature.geometry.coordinates[0][3][0]) >= westBound
-    )
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][3][1] >= southBound)
-    )
+    // const interceptionFilteredData = interceptionData.features
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+    // )
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][1][1]) <= northBound
+    // )
+    // .filter(feature => 
+    //   Number(feature.geometry.coordinates[0][3][0]) >= westBound
+    // )
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][3][1] >= southBound)
+    // )
 
-    interceptionFilteredData.forEach((feature) => {
-      interceptionGridCodeTotal += Number(feature.properties.gridCode);
-    })
+    // interceptionFilteredData.forEach((feature) => {
+    //   interceptionGridCodeTotal += Number(feature.properties.gridCode);
+    // })
 
-    setPieDataArray(pieDataArray.array.push(interceptionGridCodeTotal))
+    // setPieDataArray(pieDataArray.array.push(interceptionGridCodeTotal))
 
-    console.log('third loook', pieDataArray)
+    // console.log('third loook', pieDataArray)
 
-    //go through recharge geojson
-    //filter data to data within bounds
-    //sum the gridCode
+                              //go through recharge geojson
+                              //filter data to data within bounds
+                              //sum the gridCode
 
-    var rechargeGridCodeTotal = 0;
+    // var rechargeGridCodeTotal = 0;
 
-    const rechargeFilteredData = rechargeData.features
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][1][0]) <= eastBound
-    )
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][1][1]) <= northBound
-    )
-    .filter(feature => 
-      Number(feature.geometry.coordinates[0][3][0]) >= westBound
-    )
-    .filter(feature =>
-      Number(feature.geometry.coordinates[0][3][1] >= southBound)
-    )
+    // const rechargeFilteredData = rechargeData.features
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+    // )
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][1][1]) <= northBound
+    // )
+    // .filter(feature => 
+    //   Number(feature.geometry.coordinates[0][3][0]) >= westBound
+    // )
+    // .filter(feature =>
+    //   Number(feature.geometry.coordinates[0][3][1] >= southBound)
+    // )
 
-    rechargeFilteredData.forEach((feature) => {
-      rechargeGridCodeTotal += Number(feature.properties.gridCode);
-    })
+    // rechargeFilteredData.forEach((feature) => {
+    //   rechargeGridCodeTotal += Number(feature.properties.gridCode);
+    // })
 
-    setPieDataArray(pieDataArray.array.push(rechargeGridCodeTotal))
+    // setPieDataArray(pieDataArray.array.push(rechargeGridCodeTotal))
 
-    console.log('4th look', pieDataArray)
+    // console.log('4th look', pieDataArray)
 
-    //the sum of all the gridcodes go into an array
+                                //the sum of all the gridcodes go into an array
 
-    //the array goes to the State
+                                //the array goes to the State
 
-    //// the AnimatedPieSVG component will plug into the data in the state
+                                //// the AnimatedPieSVG component will plug into the data in the state
   };
 
   const [pieData, setPieData] = useState({
