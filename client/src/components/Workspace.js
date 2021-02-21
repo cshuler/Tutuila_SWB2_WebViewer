@@ -129,8 +129,8 @@ export default class Workspace extends Component {
     })
 
 
-    this.setState({ pieDataArray: [{label: 'runoff', value:runOffGridCodeTotal}, {label: 'et', value: ETGridCodeTotal}, {label: 'interception', value: interceptionGridCodeTotal}, {label: 'recharge', value: rechargeGridCodeTotal}] })
-    return console.log(this.state.pieDataArray)
+    return this.setState({ pieDataArray: [{label: 'runoff', value:runOffGridCodeTotal}, {label: 'et', value: ETGridCodeTotal}, {label: 'interception', value: interceptionGridCodeTotal}, {label: 'recharge', value: rechargeGridCodeTotal}] })
+    // return console.log(this.state.pieDataArray)
   };
 
   render() {
@@ -193,7 +193,7 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.state({ selectedMap: "Run Off", mapStylingStyle: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+              this.setState({ selectedMap: "Run Off", mapStylingStyle: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
             }}
           >
             Run Off
@@ -205,7 +205,7 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.state({ selectedMap: "Recharge", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" })
+              this.setState({ selectedMap: "Recharge", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" })
             }}
           >
             Recharge
@@ -217,7 +217,7 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.state({ selectedMap: "Interception", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" })
+              this.setState({ selectedMap: "Interception", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" })
             }}
           >
             Interception
@@ -229,7 +229,7 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.state({ selectedMap: "ET", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" })
+              this.setState({ selectedMap: "ET", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" })
             }}
           >
             ET
@@ -241,7 +241,7 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.state({ selectedMap: "Rainfall", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" })
+              this.setState({ selectedMap: "Rainfall", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" })
             }}
           >
             Rainfall
