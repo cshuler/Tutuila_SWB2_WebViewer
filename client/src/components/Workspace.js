@@ -5,11 +5,18 @@ import Slider from "@material-ui/core/Slider";
 import PieClass from "./PieClass"
 import "./MyMap.css";
 
+import { PieChart } from "react-minimal-pie-chart"
+
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 const runOffData = require("../data/geoJson_files/runoff_prj_cleaned.json");
 const ETData = require("../data/geoJson_files/ET_prj_cleaned.json")
 const interceptionData = require("../data/geoJson_files/interception_prj_cleaned.json")
 const rechargeData = require("../data/geoJson_files/recharge_prj_cleaned.json")
+
+const defaultLabelStyle = {
+  fontSize: '5px',
+  fontFamily: 'sans-serif',
+};
 
 export default class Workspace extends Component {
   constructor(props) {
@@ -27,7 +34,25 @@ export default class Workspace extends Component {
       selectedMap: "Run off",
       opacityValueLevel: 100,
       opacityValuePercentage: "100%",
-      pieDataArray: []
+      pieDataArray: [],
+      options: {
+        chart: {
+          width: 380,
+          type: 'pie',
+        },
+        labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+        responsive: [{
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }]
+      }
     }
     this.check = this.check.bind(this)
   }
@@ -129,10 +154,15 @@ export default class Workspace extends Component {
     })
 
 
-    return this.setState({ pieDataArray: [{label: 'runoff', value:runOffGridCodeTotal}, {label: 'et', value: ETGridCodeTotal}, {label: 'interception', value: interceptionGridCodeTotal}, {label: 'recharge', value: rechargeGridCodeTotal}] })
+    return this.setState({
+      pieDataArray: [
+        { title: 'runoff', value: runOffGridCodeTotal, color: "#E38627" },
+        { title: 'et', value: ETGridCodeTotal, color: "#C13C37" },
+        { title: 'interception', value: interceptionGridCodeTotal, color: "#6A2135" },
+        { title: 'recharge', value: rechargeGridCodeTotal, color: "#fff000" }]
+    })
     // return console.log(this.state.pieDataArray)
   };
-
   render() {
 
     return (
@@ -166,9 +196,21 @@ export default class Workspace extends Component {
           data={this.state.pieDataArray}
           width={200}
           height={200}
-          innerRadius={60}
+          innerRadius={30}
           outerRadius={100}
         />
+
+        <PieChart
+          data={this.state.pieDataArray}
+          paddingAngle={2}
+          label={({ dataEntry }) => `${dataEntry.title}`}
+          labelStyle={{
+            ...defaultLabelStyle,
+          }}
+          animate={true}
+          viewBoxSize={[200,200]}
+        />
+
         <Slider
           value={this.state.opacityValueLevel}
           onChange={(event, newValue) => {
@@ -180,6 +222,7 @@ export default class Workspace extends Component {
         <h1 style={{ textAlign: "center" }}>{this.state.selectedMap}</h1>
 
         <div
+          id='buttonsDiv'
           style={{
             display: "flex",
             justifyContent: "center",
