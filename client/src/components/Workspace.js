@@ -171,7 +171,7 @@ export default class Workspace extends Component {
       <div>
         <ReactMapGL
           {...this.state.viewport}
-          maxZoom={20}
+          maxZoom={18}
           minZoom={10.5}
           mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
@@ -183,7 +183,7 @@ export default class Workspace extends Component {
         >
           <ReactMapGL
             {...this.state.viewport}
-            maxZoom={20}
+            maxZoom={18}
             minZoom={10.5}
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             onViewportChange={(newViewport) => {
