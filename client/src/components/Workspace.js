@@ -164,6 +164,7 @@ export default class Workspace extends Component {
         { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
       ],
     });
+    return
     // return console.log(this.state.pieDataArray)
   }
   render() {
