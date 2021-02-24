@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactMapGL, { WebMercatorViewport } from "react-map-gl";
 import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/core/Slider";
-import PieClass from "./PieClass";
 import "./MyMap.css";
 
 import { PieChart } from "react-minimal-pie-chart";
@@ -17,7 +16,6 @@ const defaultLabelStyle = {
   fontSize: "10px",
   fontFamily: "sans-serif"
 };
-
 export default class Workspace extends Component {
   constructor(props) {
     super(props);
@@ -161,9 +159,9 @@ export default class Workspace extends Component {
         {
           title: "Int.",
           value: interceptionGridCodeTotal,
-          color: "#6A2135",
+          color: "#71F523",
         },
-        { title: "Recharge", value: rechargeGridCodeTotal, color: "#fff000" },
+        { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
       ],
     });
     // return console.log(this.state.pieDataArray)
@@ -328,20 +326,3 @@ export default class Workspace extends Component {
     );
   }
 }
-
-
-
-
-
-
-
-
-{/* <div style={{padding: 20}}>
-          <PieClass
-            data={this.state.pieDataArray}
-            width={200}
-            height={200}
-            innerRadius={30}
-            outerRadius={100}
-          />
-        </div> */}
