@@ -2,25 +2,25 @@ import React, { Component } from "react";
 import ReactMapGL, { WebMercatorViewport } from "react-map-gl";
 import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/core/Slider";
-import PieClass from "./PieClass"
+import PieClass from "./PieClass";
 import "./MyMap.css";
 
-import { PieChart } from "react-minimal-pie-chart"
+import { PieChart } from "react-minimal-pie-chart";
 
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 const runOffData = require("../data/geoJson_files/runoff_prj_cleaned.json");
-const ETData = require("../data/geoJson_files/ET_prj_cleaned.json")
-const interceptionData = require("../data/geoJson_files/interception_prj_cleaned.json")
-const rechargeData = require("../data/geoJson_files/recharge_prj_cleaned.json")
+const ETData = require("../data/geoJson_files/ET_prj_cleaned.json");
+const interceptionData = require("../data/geoJson_files/interception_prj_cleaned.json");
+const rechargeData = require("../data/geoJson_files/recharge_prj_cleaned.json");
 
 const defaultLabelStyle = {
-  fontSize: '5px',
-  fontFamily: 'sans-serif',
+  fontSize: "10px",
+  fontFamily: "sans-serif"
 };
 
 export default class Workspace extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       viewport: {
         latitude: -14.3,
@@ -38,27 +38,28 @@ export default class Workspace extends Component {
       options: {
         chart: {
           width: 380,
-          type: 'pie',
+          type: "pie",
         },
-        labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
+        labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              chart: {
+                width: 200,
+              },
+              legend: {
+                position: "bottom",
+              },
             },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-      }
-    }
-    this.check = this.check.bind(this)
+          },
+        ],
+      },
+    };
+    this.check = this.check.bind(this);
   }
 
   check() {
-
     //this gets the bounds of the viewer
     const vp = new WebMercatorViewport(this.state.viewport);
     const theBounds = vp.getBounds();
@@ -67,104 +68,107 @@ export default class Workspace extends Component {
     const eastBound = Number(theBounds[1][0]);
     const northBound = Number(theBounds[1][1]);
 
-    this.setState({ pieDataArray: [] })
+    this.setState({ pieDataArray: [] });
 
     ///////////////////////////////////////////////
     var runOffGridCodeTotal = 0;
 
     const runOffFilteredData = runOffData.features
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][0]) <= eastBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][1]) <= northBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][1]) <= northBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][3][0]) >= westBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][3][0]) >= westBound
       )
-      .filter(feature =>
+      .filter((feature) =>
         Number(feature.geometry.coordinates[0][3][1] >= southBound)
-      )
+      );
 
     runOffFilteredData.forEach((feature) => {
       runOffGridCodeTotal += Number(feature.properties.gridCode);
-    })
+    });
 
-    //////////////////////////////////////////////////////    
+    //////////////////////////////////////////////////////
 
     var ETGridCodeTotal = 0;
 
     const ETFilteredData = ETData.features
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][0]) <= eastBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][1]) <= northBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][1]) <= northBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][3][0]) >= westBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][3][0]) >= westBound
       )
-      .filter(feature =>
+      .filter((feature) =>
         Number(feature.geometry.coordinates[0][3][1] >= southBound)
-      )
+      );
 
     ETFilteredData.forEach((feature) => {
       ETGridCodeTotal += Number(feature.properties.gridCode);
-    })
+    });
 
     ///////////////////////////////////////////////
     var interceptionGridCodeTotal = 0;
 
     const interceptionFilteredData = interceptionData.features
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][0]) <= eastBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][1]) <= northBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][1]) <= northBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][3][0]) >= westBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][3][0]) >= westBound
       )
-      .filter(feature =>
+      .filter((feature) =>
         Number(feature.geometry.coordinates[0][3][1] >= southBound)
-      )
+      );
 
     interceptionFilteredData.forEach((feature) => {
       interceptionGridCodeTotal += Number(feature.properties.gridCode);
-    })
+    });
     ////////////////////////////////////////////////////////////////////
     var rechargeGridCodeTotal = 0;
 
     const rechargeFilteredData = rechargeData.features
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][0]) <= eastBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][1][1]) <= northBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][1]) <= northBound
       )
-      .filter(feature =>
-        Number(feature.geometry.coordinates[0][3][0]) >= westBound
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][3][0]) >= westBound
       )
-      .filter(feature =>
+      .filter((feature) =>
         Number(feature.geometry.coordinates[0][3][1] >= southBound)
-      )
+      );
 
     rechargeFilteredData.forEach((feature) => {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
-    })
-
+    });
 
     return this.setState({
       pieDataArray: [
-        { title: 'runoff', value: runOffGridCodeTotal, color: "#E38627" },
-        { title: 'et', value: ETGridCodeTotal, color: "#C13C37" },
-        { title: 'interception', value: interceptionGridCodeTotal, color: "#6A2135" },
-        { title: 'recharge', value: rechargeGridCodeTotal, color: "#fff000" }]
-    })
+        { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
+        { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
+        {
+          title: "Int.",
+          value: interceptionGridCodeTotal,
+          color: "#6A2135",
+        },
+        { title: "Recharge", value: rechargeGridCodeTotal, color: "#fff000" },
+      ],
+    });
     // return console.log(this.state.pieDataArray)
-  };
+  }
   render() {
-
     return (
       <div>
         <ReactMapGL
@@ -173,7 +177,7 @@ export default class Workspace extends Component {
           minZoom={10.5}
           mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
-            this.setState({ viewport: newViewport })
+            this.setState({ viewport: newViewport });
           }}
           mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
           attributionControl={false}
@@ -185,36 +189,46 @@ export default class Workspace extends Component {
             minZoom={10.5}
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             onViewportChange={(newViewport) => {
-              this.setState({ viewport: newViewport })
+              this.setState({ viewport: newViewport });
               this.check();
             }}
             mapStyle={this.state.mapStylingStyle}
             style={{ opacity: this.state.opacityValuePercentage }}
           ></ReactMapGL>
         </ReactMapGL>
-        <PieClass
-          data={this.state.pieDataArray}
-          width={200}
-          height={200}
-          innerRadius={30}
-          outerRadius={100}
-        />
 
-        <PieChart
-          data={this.state.pieDataArray}
-          paddingAngle={2}
-          label={({ dataEntry }) => `${dataEntry.title}`}
-          labelStyle={{
-            ...defaultLabelStyle,
+        <div
+          style={{
+            width: 200,
+            height: 200,
+            display: "flext",
+            justifyContent: "center",
+            alignItems: "center",
+            marginLeft: 100,
           }}
-          animate={true}
-          viewBoxSize={[200,200]}
-        />
+        >
+          <PieChart
+            data={this.state.pieDataArray}
+            paddingAngle={5}
+            lineWidth={40}
+            label={({ dataEntry }) => `${dataEntry.title}`}
+            labelStyle={{
+              ...defaultLabelStyle,
+            }}
+            animate={true}
+            viewBoxSize={[100, 100]}
+            radius={42}
+            labelPosition={100}
+          />
+        </div>
 
         <Slider
           value={this.state.opacityValueLevel}
           onChange={(event, newValue) => {
-            this.setState({ opacityValueLevel: newValue, opacityValuePercentage: `${newValue}%` })
+            this.setState({
+              opacityValueLevel: newValue,
+              opacityValuePercentage: `${newValue}%`,
+            });
           }}
           aria-labelledby="continuous-slider"
         />
@@ -222,7 +236,7 @@ export default class Workspace extends Component {
         <h1 style={{ textAlign: "center" }}>{this.state.selectedMap}</h1>
 
         <div
-          id='buttonsDiv'
+          id="buttonsDiv"
           style={{
             display: "flex",
             justifyContent: "center",
@@ -236,11 +250,15 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.setState({ selectedMap: "Run Off", mapStylingStyle: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" })
+              this.setState({
+                selectedMap: "Run Off",
+                mapStylingStyle:
+                  "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
+              });
             }}
           >
             Run Off
-        </Button>
+          </Button>
           <Button
             variant="outlined"
             color="primary"
@@ -248,11 +266,15 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.setState({ selectedMap: "Recharge", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" })
+              this.setState({
+                selectedMap: "Recharge",
+                mapStylingStyle:
+                  "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0",
+              });
             }}
           >
             Recharge
-        </Button>
+          </Button>
           <Button
             variant="outlined"
             color="primary"
@@ -260,11 +282,15 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.setState({ selectedMap: "Interception", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" })
+              this.setState({
+                selectedMap: "Interception",
+                mapStylingStyle:
+                  "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi",
+              });
             }}
           >
             Interception
-        </Button>
+          </Button>
           <Button
             variant="outlined"
             color="primary"
@@ -272,11 +298,15 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.setState({ selectedMap: "ET", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" })
+              this.setState({
+                selectedMap: "ET",
+                mapStylingStyle:
+                  "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1",
+              });
             }}
           >
             ET
-        </Button>
+          </Button>
           <Button
             variant="outlined"
             color="primary"
@@ -284,13 +314,34 @@ export default class Workspace extends Component {
               margin: "5px",
             }}
             onClick={() => {
-              this.setState({ selectedMap: "Rainfall", mapStylingStyle: "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" })
+              this.setState({
+                selectedMap: "Rainfall",
+                mapStylingStyle:
+                  "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p",
+              });
             }}
           >
             Rainfall
-        </Button>
+          </Button>
         </div>
       </div>
     );
   }
 }
+
+
+
+
+
+
+
+
+{/* <div style={{padding: 20}}>
+          <PieClass
+            data={this.state.pieDataArray}
+            width={200}
+            height={200}
+            innerRadius={30}
+            outerRadius={100}
+          />
+        </div> */}
