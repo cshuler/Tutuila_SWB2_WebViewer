@@ -2,10 +2,6 @@
   "name": "tutuilarecharge",
   "version": "1.0.0",
   "main": "index.js",
-  "engines": {
-    "node": "12.16.0",
-    "npm": "6.13.4"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
