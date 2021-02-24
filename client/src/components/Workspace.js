@@ -66,8 +66,6 @@ export default class Workspace extends Component {
     const eastBound = Number(theBounds[1][0]);
     const northBound = Number(theBounds[1][1]);
 
-    this.setState({ pieDataArray: [] });
-
     ///////////////////////////////////////////////
     var runOffGridCodeTotal = 0;
 
