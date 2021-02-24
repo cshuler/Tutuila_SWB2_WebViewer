@@ -152,7 +152,7 @@ export default class Workspace extends Component {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     });
 
-    return this.setState({
+    this.setState({
       pieDataArray: [
         { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
         { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
