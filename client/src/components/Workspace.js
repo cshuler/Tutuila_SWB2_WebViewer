@@ -32,7 +32,17 @@ export default class Workspace extends Component {
       selectedMap: "Run off",
       opacityValueLevel: 100,
       opacityValuePercentage: "100%",
-      pieDataArray: [],
+      //pieDataArray: [],
+      pieDataArray: [
+              { title: "R.O.", value: 5, color: "#E38627" },
+              { title: "ET", value: 5, color: "#C13C37" },
+              {
+                title: "Int.",
+                value: 5,
+                color: "#71F523",
+              },
+              { title: "Recharge", value: 5, color: "#78BCED" },
+            ],
       options: {
         chart: {
           width: 380,
@@ -150,18 +160,18 @@ export default class Workspace extends Component {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     });
 
-    return this.setState({
-      pieDataArray: [
-        { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
-        { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
-        {
-          title: "Int.",
-          value: interceptionGridCodeTotal,
-          color: "#71F523",
-        },
-        { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
-      ],
-    });
+  // this.setState({
+  //     pieDataArray: [
+  //       { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
+  //       { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
+  //       {
+  //         title: "Int.",
+  //         value: interceptionGridCodeTotal,
+  //         color: "#71F523",
+  //       },
+  //       { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
+  //     ],
+  //   });
     // return console.log(this.state.pieDataArray)
   }
   render() {
