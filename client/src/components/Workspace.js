@@ -157,16 +157,23 @@ export default class Workspace extends Component {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     });
 
+    var sumOfData = runOffGridCodeTotal + ETGridCodeTotal + interceptionGridCodeTotal + rechargeGridCodeTotal
+    var runOffPercentage = Math.floor((runOffGridCodeTotal / sumOfData) * 100)
+    var ETPercentage = Math.floor((ETGridCodeTotal / sumOfData) * 100)
+    var InterceptionPercentage = Math.floor((interceptionGridCodeTotal / sumOfData) * 100)
+    var rechargePercentage = Math.floor((rechargeGridCodeTotal / sumOfData) * 100)
+
     this.setState({
       pieDataArray: [
-        { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
-        { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
+        { title: `R.O.`, value: runOffGridCodeTotal, percentage:`${runOffPercentage}%`,  color: "#E38627" },
+        { title: `ET`, value: ETGridCodeTotal, percentage: `${ETPercentage}%`, color: "#C13C37" },
         {
-          title: "Int.",
+          title: `Int.`,
           value: interceptionGridCodeTotal,
+          percentage: `${InterceptionPercentage}%`,
           color: "#71F523",
         },
-        { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
+        { title: `Recharge`, value: rechargeGridCodeTotal, percentage: `${rechargePercentage}%`, color: "#78BCED" },
       ],
       viewport: newViewport 
     });
@@ -212,12 +219,12 @@ export default class Workspace extends Component {
             data={this.state.pieDataArray}
             paddingAngle={5}
             lineWidth={40}
-            label={({ dataEntry }) => `${dataEntry.title}`}
+            label={({ dataEntry }) => `${dataEntry.title}: ${dataEntry.percentage}`}
             labelStyle={{
               ...defaultLabelStyle,
             }}
             animate={true}
-            viewBoxSize={[100, 100]}
+            viewBoxSize={[125, 125]}
             radius={42}
             labelPosition={100}
           />
