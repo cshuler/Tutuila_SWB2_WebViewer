@@ -193,9 +193,6 @@ export default class Workspace extends Component {
             minZoom={10.5}
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             // onMouseUp={this.check}
-            onViewportChange={(newViewport) => {
-              console.log('here')
-            }}
             mapStyle={this.state.mapStylingStyle}
             style={{ opacity: this.state.opacityValuePercentage }}
           ></ReactMapGL>
