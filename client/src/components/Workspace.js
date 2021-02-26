@@ -34,15 +34,15 @@ export default class Workspace extends Component {
       opacityValuePercentage: "100%",
       //pieDataArray: [],
       pieDataArray: [
-              { title: "R.O.", value: 5, color: "#E38627" },
-              { title: "ET", value: 5, color: "#C13C37" },
-              {
-                title: "Int.",
-                value: 5,
-                color: "#71F523",
-              },
-              { title: "Recharge", value: 5, color: "#78BCED" },
-            ],
+        { title: "R.O.", value: 5, color: "#E38627" },
+        { title: "ET", value: 5, color: "#C13C37" },
+        {
+          title: "Int.",
+          value: 5,
+          color: "#71F523",
+        },
+        { title: "Recharge", value: 5, color: "#78BCED" },
+      ],
       options: {
         chart: {
           width: 380,
@@ -160,7 +160,7 @@ export default class Workspace extends Component {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     });
 
-  this.setState({
+    this.setState({
       pieDataArray: [
         { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
         { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
@@ -196,7 +196,7 @@ export default class Workspace extends Component {
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             // onMouseUp={this.check}
             onViewportChange={(newViewport) => {
-              this.check()
+              return this.check()
             }}
             mapStyle={this.state.mapStylingStyle}
             style={{ opacity: this.state.opacityValuePercentage }}
