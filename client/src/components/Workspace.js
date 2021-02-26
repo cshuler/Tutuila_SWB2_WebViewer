@@ -27,6 +27,13 @@ export default class Workspace extends Component {
         height: "500px",
         zoom: 10.5,
       },
+      viewport2: {
+        latitude: -14.3,
+        longitude: -170.7,
+        width: "100%",
+        height: "500px",
+        zoom: 10.5,
+      },
       mapStylingStyle: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
       mapStylingOpacity: "50%",
       selectedMap: "Run off",
@@ -186,8 +193,8 @@ export default class Workspace extends Component {
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             // onMouseUp={this.check}
             onViewportChange={(newViewport) => {
+              this.setState({ viewport2: newViewport })
               console.log('here')
-              this.check()
             }}
             mapStyle={this.state.mapStylingStyle}
             style={{ opacity: this.state.opacityValuePercentage }}
