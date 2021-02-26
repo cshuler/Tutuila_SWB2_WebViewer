@@ -160,18 +160,18 @@ export default class Workspace extends Component {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     });
 
-  // this.setState({
-  //     pieDataArray: [
-  //       { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
-  //       { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
-  //       {
-  //         title: "Int.",
-  //         value: interceptionGridCodeTotal,
-  //         color: "#71F523",
-  //       },
-  //       { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
-  //     ],
-  //   });
+  this.setState({
+      pieDataArray: [
+        { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
+        { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
+        {
+          title: "Int.",
+          value: interceptionGridCodeTotal,
+          color: "#71F523",
+        },
+        { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
+      ],
+    });
     // return console.log(this.state.pieDataArray)
   }
   render() {
@@ -194,7 +194,10 @@ export default class Workspace extends Component {
             maxZoom={18}
             minZoom={10.5}
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
-
+            // onMouseUp={this.check}
+            onViewportChange={(newViewport) => {
+              this.check()
+            }}
             mapStyle={this.state.mapStylingStyle}
             style={{ opacity: this.state.opacityValuePercentage }}
           ></ReactMapGL>
