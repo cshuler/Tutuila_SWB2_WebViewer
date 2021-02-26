@@ -64,9 +64,9 @@ export default class Workspace extends Component {
     this.check = this.check.bind(this);
   }
 
-  check() {
+  check(newViewport) {
     //this gets the bounds of the viewer
-    const vp = new WebMercatorViewport(this.state.viewport);
+    const vp = new WebMercatorViewport(newViewport);
     const theBounds = vp.getBounds();
     const westBound = Number(theBounds[0][0]);
     const southBound = Number(theBounds[0][1]);
@@ -157,7 +157,7 @@ export default class Workspace extends Component {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     });
 
-    return this.setState({
+    this.setState({
       pieDataArray: [
         { title: "R.O.", value: runOffGridCodeTotal, color: "#E38627" },
         { title: "ET", value: ETGridCodeTotal, color: "#C13C37" },
@@ -168,6 +168,7 @@ export default class Workspace extends Component {
         },
         { title: "Recharge", value: rechargeGridCodeTotal, color: "#78BCED" },
       ],
+      viewport: newViewport 
     });
     // return console.log(this.state.pieDataArray)
   }
@@ -180,7 +181,7 @@ export default class Workspace extends Component {
           minZoom={10.5}
           mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
           onViewportChange={(newViewport) => {
-            this.setState({ viewport: newViewport })
+            this.check(newViewport)
           }}
           mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
           attributionControl={false}
@@ -193,7 +194,6 @@ export default class Workspace extends Component {
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             // onMouseUp={this.check}
             onViewportChange={(newViewport) => {
-              this.setState({ viewport2: newViewport })
               console.log('here')
             }}
             mapStyle={this.state.mapStylingStyle}
