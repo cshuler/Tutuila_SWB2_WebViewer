@@ -9,12 +9,18 @@ import Instruction from './Instruction'
 import ModelDetails from './ModelDetails'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const styles = {
+  navBar: {
+    width: "745px"
+  }
+}
+
 export class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
-          <NavigationBar />
+        <div>
+          <NavigationBar style={styles.navBar} />
           <Route exact path="/" component={Home} />
           <Route exact path="/workspace" component={Workspace} />
           <Route exact path="/modeldetails" component={ModelDetails} />
