@@ -166,7 +166,7 @@ export default class Workspace extends Component {
     this.setState({
       pieDataArray: [
         { title: `R.O.`, value: runOffGridCodeTotal, percentage:`${runOffPercentage}%`,  color: "#E38627" },
-        { title: `ET`, value: ETGridCodeTotal, percentage: `${ETPercentage}%`, color: "#C13C37" },
+        { title: `ET`, value: ETGridCodeTotal, percentage: `${ETPercentage}%`, color: "#01BDD3" },
         {
           title: `Int.`,
           value: interceptionGridCodeTotal,
