@@ -18,7 +18,11 @@ const styles = {
     fontFamily: "sans-serif"
   },
   mapCpontainer: {
-    marginTop: "10px"
+    marginTop: "10px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+
   },
   pieChartContainer: {
     width: 200,
