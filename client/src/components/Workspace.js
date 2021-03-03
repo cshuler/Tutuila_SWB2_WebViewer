@@ -5,6 +5,7 @@ import Slider from "@material-ui/core/Slider";
 import "./MyMap.css";
 
 import { PieChart } from "react-minimal-pie-chart";
+import MapButton from "./MapButton";
 
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 const runOffData = require("../data/geoJson_files/runoff_prj_cleaned.json");
@@ -94,8 +95,8 @@ export default class Workspace extends Component {
       },
     };
     this.check = this.check.bind(this);
+    this.changeMap = this.changeMap.bind(this)
   }
-
   check(newViewport) {
     //this gets the bounds of the viewer
     const vp = new WebMercatorViewport(newViewport);
@@ -211,6 +212,9 @@ export default class Workspace extends Component {
     });
     // return console.log(this.state.pieDataArray)
   }
+  changeMap(selectedMap, mapStylingStyle){
+    this.setState({ selectedMap,mapStylingStyle})
+  }
   render() {
     return (
       <div>
@@ -278,76 +282,11 @@ export default class Workspace extends Component {
             id="buttonsDiv"
             style={styles.buttonContainer}
           >
-            <Button
-              variant="outlined"
-              color="primary"
-              style={styles.changeMapButton}
-              onClick={() => {
-                this.setState({
-                  selectedMap: "Run Off",
-                  mapStylingStyle:
-                    "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
-                });
-              }}
-            >
-              Run Off
-          </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={styles.changeMapButton}
-              onClick={() => {
-                this.setState({
-                  selectedMap: "Recharge",
-                  mapStylingStyle:
-                    "mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0",
-                });
-              }}
-            >
-              Recharge
-          </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={styles.changeMapButton}
-              onClick={() => {
-                this.setState({
-                  selectedMap: "Interception",
-                  mapStylingStyle:
-                    "mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi",
-                });
-              }}
-            >
-              Interception
-          </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={styles.changeMapButton}
-              onClick={() => {
-                this.setState({
-                  selectedMap: "ET",
-                  mapStylingStyle:
-                    "mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1",
-                });
-              }}
-            >
-              ET
-          </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={styles.changeMapButton}
-              onClick={() => {
-                this.setState({
-                  selectedMap: "Rainfall",
-                  mapStylingStyle:
-                    "mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p",
-                });
-              }}
-            >
-              Rainfall
-          </Button>
+          <MapButton title="RunOff" mapStyleLink="mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" changeMap={this.changeMap} />
+          <MapButton title="Recharge" mapStyleLink="mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" changeMap={this.changeMap} />
+          <MapButton title="Interception" mapStyleLink="mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" changeMap={this.changeMap} />
+          <MapButton title="ET" mapStyleLink="mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" changeMap={this.changeMap} />
+          <MapButton title="Rainfall" mapStyleLink="mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" changeMap={this.changeMap} />
           </div>
         </div>
       </div>
