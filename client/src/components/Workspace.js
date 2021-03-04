@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapGL, { WebMercatorViewport } from "react-map-gl";
+import ReactMapGL from "react-map-gl";
 import Slider from "@material-ui/core/Slider";
 import "./MyMap.css";
 
@@ -7,10 +7,6 @@ import MapButton from "./MapButton";
 import PieChartMap from "./PieChartMap";
 
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
-const runOffData = require("../data/geoJson_files/runoff_prj_cleaned.json");
-const ETData = require("../data/geoJson_files/ET_prj_cleaned.json");
-const interceptionData = require("../data/geoJson_files/interception_prj_cleaned.json");
-const rechargeData = require("../data/geoJson_files/recharge_prj_cleaned.json");
 
 const styles = {
   mapCpontainer: {

@@ -25,9 +25,9 @@ export default class PieChartMap extends Component {
       pieDataArray: [],
     };
   }
-  componentDidMount() {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     //this gets the bounds of the viewer
-    const vp = new WebMercatorViewport(this.props.viewport);
+    const vp = new WebMercatorViewport(nextProps.viewport);
     const theBounds = vp.getBounds();
     const westBound = Number(theBounds[0][0]);
     const southBound = Number(theBounds[0][1]);
