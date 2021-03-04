@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import ReactMapGL, { WebMercatorViewport } from "react-map-gl";
-import Button from "@material-ui/core/Button";
 import Slider from "@material-ui/core/Slider";
 import "./MyMap.css";
 
-import { PieChart } from "react-minimal-pie-chart";
 import MapButton from "./MapButton";
+import PieChartMap from "./PieChartMap";
 
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 const runOffData = require("../data/geoJson_files/runoff_prj_cleaned.json");
@@ -14,16 +13,11 @@ const interceptionData = require("../data/geoJson_files/interception_prj_cleaned
 const rechargeData = require("../data/geoJson_files/recharge_prj_cleaned.json");
 
 const styles = {
-  pieChartFont: {
-    fontSize: "10px",
-    fontFamily: "sans-serif"
-  },
   mapCpontainer: {
     marginTop: "10px",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
-
+    justifyContent: "center",
   },
   pieChartContainer: {
     width: 200,
@@ -34,10 +28,10 @@ const styles = {
     marginLeft: 100,
   },
   sliderContainer: {
-    width: 100
+    width: 100,
   },
   selectedMapHeader: {
-    textAlign: "center"
+    textAlign: "center",
   },
   buttonContainer: {
     display: "flex",
@@ -46,8 +40,8 @@ const styles = {
   },
   changeMapButton: {
     margin: "5px",
-  }
-}
+  },
+};
 
 export default class Workspace extends Component {
   constructor(props) {
@@ -95,7 +89,7 @@ export default class Workspace extends Component {
       },
     };
     this.check = this.check.bind(this);
-    this.changeMap = this.changeMap.bind(this)
+    this.changeMap = this.changeMap.bind(this);
   }
   check(newViewport) {
     //this gets the bounds of the viewer
@@ -190,30 +184,53 @@ export default class Workspace extends Component {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
     });
 
-    var sumOfData = runOffGridCodeTotal + ETGridCodeTotal + interceptionGridCodeTotal + rechargeGridCodeTotal
-    var runOffPercentage = Math.floor((runOffGridCodeTotal / sumOfData) * 100)
-    var ETPercentage = Math.floor((ETGridCodeTotal / sumOfData) * 100)
-    var InterceptionPercentage = Math.floor((interceptionGridCodeTotal / sumOfData) * 100)
-    var rechargePercentage = Math.floor((rechargeGridCodeTotal / sumOfData) * 100)
+    var sumOfData =
+      runOffGridCodeTotal +
+      ETGridCodeTotal +
+      interceptionGridCodeTotal +
+      rechargeGridCodeTotal;
+    var runOffPercentage = Math.floor((runOffGridCodeTotal / sumOfData) * 100);
+    var ETPercentage = Math.floor((ETGridCodeTotal / sumOfData) * 100);
+    var InterceptionPercentage = Math.floor(
+      (interceptionGridCodeTotal / sumOfData) * 100
+    );
+    var rechargePercentage = Math.floor(
+      (rechargeGridCodeTotal / sumOfData) * 100
+    );
 
     this.setState({
       pieDataArray: [
-        { title: `R.O.`, value: runOffGridCodeTotal, percentage: `${runOffPercentage}%`, color: "#E38627" },
-        { title: `ET`, value: ETGridCodeTotal, percentage: `${ETPercentage}%`, color: "#01BDD3" },
+        {
+          title: `R.O.`,
+          value: runOffGridCodeTotal,
+          percentage: `${runOffPercentage}%`,
+          color: "#E38627",
+        },
+        {
+          title: `ET`,
+          value: ETGridCodeTotal,
+          percentage: `${ETPercentage}%`,
+          color: "#01BDD3",
+        },
         {
           title: `Int.`,
           value: interceptionGridCodeTotal,
           percentage: `${InterceptionPercentage}%`,
           color: "#71F523",
         },
-        { title: `Recharge`, value: rechargeGridCodeTotal, percentage: `${rechargePercentage}%`, color: "#78BCED" },
+        {
+          title: `Recharge`,
+          value: rechargeGridCodeTotal,
+          percentage: `${rechargePercentage}%`,
+          color: "#78BCED",
+        },
       ],
-      viewport: newViewport
+      viewport: newViewport,
     });
     // return console.log(this.state.pieDataArray)
   }
-  changeMap(selectedMap, mapStylingStyle){
-    this.setState({ selectedMap,mapStylingStyle})
+  changeMap(selectedMap, mapStylingStyle) {
+    this.setState({ selectedMap, mapStylingStyle });
   }
   render() {
     return (
@@ -225,7 +242,7 @@ export default class Workspace extends Component {
             minZoom={10.5}
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             onViewportChange={(newViewport) => {
-              this.check(newViewport)
+              this.check(newViewport);
             }}
             mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
             attributionControl={false}
@@ -242,26 +259,11 @@ export default class Workspace extends Component {
           </ReactMapGL>
         </div>
 
-        <div
-          style={styles.pieChartContainer}
-        >
-          <PieChart
-            data={this.state.pieDataArray}
-            paddingAngle={5}
-            lineWidth={40}
-            label={({ dataEntry }) => `${dataEntry.title}: ${dataEntry.percentage}`}
-            labelStyle={{
-              ...styles.pieChartFont,
-            }}
-            animate={true}
-            viewBoxSize={[125, 125]}
-            radius={42}
-            labelPosition={100}
-          />
+        <div>
+          <PieChartMap pieDataArray={this.state.pieDataArray} />
         </div>
 
         <div style={styles.sliderContainer}>
-
           <Slider
             value={this.state.opacityValueLevel}
             onChange={(event, newValue) => {
@@ -275,18 +277,33 @@ export default class Workspace extends Component {
           <p>{this.state.opacityValueLevel}</p>
         </div>
         <div>
-
-
           <h1 style={styles.selectedMapHeader}>{this.state.selectedMap}</h1>
-          <div
-            id="buttonsDiv"
-            style={styles.buttonContainer}
-          >
-          <MapButton title="RunOff" mapStyleLink="mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2" changeMap={this.changeMap} />
-          <MapButton title="Recharge" mapStyleLink="mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0" changeMap={this.changeMap} />
-          <MapButton title="Interception" mapStyleLink="mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi" changeMap={this.changeMap} />
-          <MapButton title="ET" mapStyleLink="mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1" changeMap={this.changeMap} />
-          <MapButton title="Rainfall" mapStyleLink="mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p" changeMap={this.changeMap} />
+          <div id="buttonsDiv" style={styles.buttonContainer}>
+            <MapButton
+              title="RunOff"
+              mapStyleLink="mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"
+              changeMap={this.changeMap}
+            />
+            <MapButton
+              title="Recharge"
+              mapStyleLink="mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0"
+              changeMap={this.changeMap}
+            />
+            <MapButton
+              title="Interception"
+              mapStyleLink="mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi"
+              changeMap={this.changeMap}
+            />
+            <MapButton
+              title="ET"
+              mapStyleLink="mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1"
+              changeMap={this.changeMap}
+            />
+            <MapButton
+              title="Rainfall"
+              mapStyleLink="mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p"
+              changeMap={this.changeMap}
+            />
           </div>
         </div>
       </div>
