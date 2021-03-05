@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { PieChart } from "react-minimal-pie-chart";
 import { WebMercatorViewport } from "react-map-gl";
 
+const rainFallData = require("../data/geoJson_files/rainfall_prj_cleaned.json");
 const runOffData = require("../data/geoJson_files/runoff_prj_cleaned.json");
 const ETData = require("../data/geoJson_files/ET_prj_cleaned.json");
 const interceptionData = require("../data/geoJson_files/interception_prj_cleaned.json");
@@ -19,7 +20,7 @@ const styles = {
     marginLeft: 50
   },
   averagesContainer: {
-    
+
   }
 };
 
@@ -30,6 +31,7 @@ export default class PieChartMap extends Component {
       pieDataArray: [],
       viewport: {},
       cellCountOnViewer: 0,
+      rainFallGridCodeTotalOnViewer: 0,
       runOffGridCodeTotalOnViewer: 0,
       rechargeGridCodeTotalOnViewer: 0,
       ETGridCodeTotalOnViewer: 0,
@@ -49,6 +51,27 @@ export default class PieChartMap extends Component {
     const southBound = Number(theBounds[0][1]);
     const eastBound = Number(theBounds[1][0]);
     const northBound = Number(theBounds[1][1]);
+
+    ///////////////////////////////////////////////
+    var rainFallGridCodeTotal = 0;
+
+    const rainFallFilteredData = rainFallData.features
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][0]) <= eastBound
+      )
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][1][1]) <= northBound
+      )
+      .filter(
+        (feature) => Number(feature.geometry.coordinates[0][3][0]) >= westBound
+      )
+      .filter((feature) =>
+        Number(feature.geometry.coordinates[0][3][1] >= southBound)
+      );
+
+    rainFallFilteredData.forEach((feature) => {
+      rainFallGridCodeTotal += Number(feature.properties.gridCode);
+    });
 
     ///////////////////////////////////////////////
     var runOffGridCodeTotal = 0;
@@ -178,10 +201,12 @@ export default class PieChartMap extends Component {
         },
       ],
       cellCountOnViewer,
+      rainFallGridCodeTotalOnViewer: rainFallGridCodeTotal,
       rechargeGridCodeTotalOnViewer: rechargeGridCodeTotal,
       runOffGridCodeTotalOnViewer: runOffGridCodeTotal,
       interceptionGridCodeTotalOnViewer: interceptionGridCodeTotal,
       ETGridCodeTotalOnViewer: ETGridCodeTotal,
+      rainFallAverage: rainFallGridCodeTotal / cellCountOnViewer,
       runOffAverage: runOffGridCodeTotal / cellCountOnViewer,
       rechargeAverage: rechargeGridCodeTotal / cellCountOnViewer,
       interceptionAverage: interceptionGridCodeTotal / cellCountOnViewer,
@@ -207,6 +232,7 @@ export default class PieChartMap extends Component {
           labelPosition={100}
         />
         <div style={styles.averagesContainer}>
+          <p> {Number(this.state.rainFallAverage).toFixed(2)} Rainfall average</p>
           <p> {Number(this.state.runOffAverage).toFixed(2)} runOff average</p>
           <p> {Number(this.state.rechargeAverage).toFixed(2)} recharge average</p>
           <p> {Number(this.state.interceptionAverage).toFixed(2)} interception average</p>
