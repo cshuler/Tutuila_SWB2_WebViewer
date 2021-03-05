@@ -73,7 +73,7 @@ export default class Workspace extends Component {
       },
       mapStylingStyle: "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2",
       mapStylingOpacity: "50%",
-      selectedMap: "Run off",
+      selectedMap: "Runoff",
       opacityValueLevel: 100,
       opacityValuePercentage: "100%",
       pieDataArray: [],
