@@ -17,7 +17,8 @@ const styles = {
     width: 200,
     height: 200,
     marginTop: 10,
-    marginLeft: 50
+    marginLeft: 50,
+    paddingLeft: 10
   },
   averagesContainer: {
 
@@ -218,7 +219,6 @@ export default class PieChartMap extends Component {
       <div style={styles.pieContainer}>
         <PieChart
           data={this.state.pieDataArray}
-          paddingAngle={5}
           lineWidth={40}
           label={({ dataEntry }) =>
             `${dataEntry.title}: ${dataEntry.percentage}`
@@ -231,6 +231,19 @@ export default class PieChartMap extends Component {
           radius={42}
           labelPosition={100}
         />
+        <PieChart 
+          data={this.state.pieDataArray}
+          label={({ dataEntry }) =>
+            `${dataEntry.title}: ${dataEntry.percentage}`
+          }
+          labelStyle={{
+            ...styles.pieChartFont,
+          }}
+          labelPosition={80}
+          animate={true}
+          viewBoxSize={[125, 125]}
+        />
+
         <div style={styles.averagesContainer}>
           <p> {Number(this.state.rainFallAverage).toFixed(2)} Rainfall average</p>
           <p> {Number(this.state.runOffAverage).toFixed(2)} runOff average</p>
