@@ -23,7 +23,12 @@ export default class PieChartMap extends Component {
     super(props);
     this.state = {
       pieDataArray: [],
-      viewport: {}
+      viewport: {},
+      cellCountOnViewer: 0,
+      runOffGridCodeTotalOnViewer: 0,
+      rechargeGridCodeTotalOnViewer: 0,
+      ETGridCodeTotalOnViewer: 0,
+      interceptionGridCodeTotalOnViewer: 0
     };
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -105,6 +110,7 @@ export default class PieChartMap extends Component {
     });
     ////////////////////////////////////////////////////////////////////
     var rechargeGridCodeTotal = 0;
+    var cellCountOnViewer = 0
 
     const rechargeFilteredData = rechargeData.features
       .filter(
@@ -122,6 +128,7 @@ export default class PieChartMap extends Component {
 
     rechargeFilteredData.forEach((feature) => {
       rechargeGridCodeTotal += Number(feature.properties.gridCode);
+      cellCountOnViewer++
     });
 
     var sumOfData =
@@ -165,6 +172,15 @@ export default class PieChartMap extends Component {
           color: "#78BCED",
         },
       ],
+      cellCountOnViewer,
+      rechargeGridCodeTotalOnViewer: rechargeGridCodeTotal,
+      runOffGridCodeTotalOnViewer: runOffGridCodeTotal,
+      interceptionGridCodeTotalOnViewer: interceptionGridCodeTotal,
+      ETGridCodeTotalOnViewer: ETGridCodeTotal,
+      runOffAverage: runOffGridCodeTotal/cellCountOnViewer,
+      rechargeAverage: rechargeGridCodeTotal/cellCountOnViewer,
+      interceptionAverage: interceptionGridCodeTotal/cellCountOnViewer,
+      ETAverage: ETGridCodeTotal/cellCountOnViewer
     });
   }
   render() {
@@ -185,6 +201,10 @@ export default class PieChartMap extends Component {
           radius={42}
           labelPosition={100}
         />
+        <h1> { Number(this.state.runOffAverage).toFixed(2) } runOff average</h1>
+        <h1> { Number(this.state.rechargeAverage).toFixed(2) } recharge average</h1>
+        <h1> { Number(this.state.interceptionAverage).toFixed(2) } interception average</h1>
+        <h1> { Number(this.state.ETAverage).toFixed(2) } ET average</h1>
       </div>
     );
   }
