@@ -11,7 +11,8 @@ const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 
 const styles = {
   workSpaceContainer: {
-    display: "flex"
+    display: "flex",
+    justifyContent: "center"
   },
   mapCpontainer: {
     marginTop: "10px",
@@ -25,7 +26,7 @@ const styles = {
     display: "flext",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 100,
+    marginLeft:10,
   },
   sliderContainer: {
     width: 100,
