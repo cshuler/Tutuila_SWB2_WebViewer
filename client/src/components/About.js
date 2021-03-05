@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
 
+const styles = {
+    header: {
+        textAlign: "center",
+    },
+    container: {
+        marginLeft: '5%', 
+        marginRight: '5%'
+    },
+}
+
 export class About extends Component {
     render() {
         return (
-            <div>
-                <div style={{textAlign:'center'}}>
+            <div style={styles.container}>
+                <div style={styles.header}>
                     <h3>About This Website</h3>
                 </div>
                 <div>
