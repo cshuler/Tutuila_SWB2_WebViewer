@@ -43,7 +43,7 @@ export default class MapRadio extends Component {
                 <FormControl component="fieldset">
                     <FormLabel component="legend">Maps</FormLabel>
                     <RadioGroup aria-label="Maps" name="mapRadio" value={this.props.selectedMap} onChange={this.handleChange}>
-                        <FormControlLabel value="Runoff" control={<Radio />} label="Runoff" />
+                        <FormControlLabel value="Runoff" checked={this.props.selectedMap==="Runoff" ? true : false} control={<Radio />} label="Runoff" />
                         <FormControlLabel value="Recharge" control={<Radio />} label="Recharge" />
                         <FormControlLabel value="Interception" control={<Radio />} label="Interception" />
                         <FormControlLabel value="ET" control={<Radio />} label="ET" />
