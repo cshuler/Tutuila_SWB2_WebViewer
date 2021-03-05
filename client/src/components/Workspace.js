@@ -5,6 +5,7 @@ import "./MyMap.css";
 
 import MapButton from "./MapButton";
 import PieChartMap from "./PieChartMap";
+import MapRadio from "./MapRadio"
 
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 
@@ -163,6 +164,8 @@ export default class Workspace extends Component {
               changeMap={this.changeMap}
             />
           </div>
+
+          <MapRadio changeMap={this.changeMap} selectedMap={this.state.selectedMap} />
         </div>
       </div>
     );
