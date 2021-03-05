@@ -13,9 +13,14 @@ const styles = {
     fontFamily: "sans-serif",
   },
   pieContainer: {
-    width: 300,
+    width: 200,
     height: 200,
+    marginTop: 10,
+    marginLeft: 50
   },
+  averagesContainer: {
+    
+  }
 };
 
 export default class PieChartMap extends Component {
@@ -201,7 +206,7 @@ export default class PieChartMap extends Component {
           radius={42}
           labelPosition={100}
         />
-        <div>
+        <div style={styles.averagesContainer}>
           <p> {Number(this.state.runOffAverage).toFixed(2)} runOff average</p>
           <p> {Number(this.state.rechargeAverage).toFixed(2)} recharge average</p>
           <p> {Number(this.state.interceptionAverage).toFixed(2)} interception average</p>

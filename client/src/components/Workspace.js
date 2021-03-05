@@ -10,6 +10,9 @@ import MapRadio from "./MapRadio"
 const { REACT_APP_MAPBOX_ACCESS_TOKEN } = require("../config/keys");
 
 const styles = {
+  workSpaceContainer: {
+    display: "flex"
+  },
   mapCpontainer: {
     marginTop: "10px",
     display: "flex",
@@ -38,6 +41,15 @@ const styles = {
   changeMapButton: {
     margin: "5px",
   },
+  rightColumn: {
+    display: "flex",
+    flexDirection: "column",
+    paddingLeft: 10,
+    width: 200
+  },
+  opacityLevel: {
+    width: 150
+  }
 };
 
 export default class Workspace extends Component {
@@ -87,13 +99,16 @@ export default class Workspace extends Component {
     };
     this.changeMap = this.changeMap.bind(this);
   }
-  
+
   changeMap(selectedMap, mapStylingStyle) {
     this.setState({ selectedMap, mapStylingStyle });
   }
   render() {
     return (
-      <div>
+      <div style={styles.workSpaceContainer}>
+        <div>
+          <PieChartMap viewport={this.state.viewport} />
+        </div>
         <div style={styles.mapCpontainer}>
           <ReactMapGL
             {...this.state.viewport}
@@ -101,7 +116,7 @@ export default class Workspace extends Component {
             minZoom={10.5}
             mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
             onViewportChange={(newViewport) => {
-              this.setState({viewport: newViewport})
+              this.setState({ viewport: newViewport })
             }}
             mapStyle={"mapbox://styles/kanakahacks/ckkkwbaag37w017p665v22142"}
             attributionControl={false}
@@ -118,54 +133,30 @@ export default class Workspace extends Component {
           </ReactMapGL>
         </div>
 
-        <div>
-          <PieChartMap viewport={this.state.viewport} />
-        </div>
-
-        <div style={styles.sliderContainer}>
-          <Slider
-            value={this.state.opacityValueLevel}
-            onChange={(event, newValue) => {
-              this.setState({
-                opacityValueLevel: newValue,
-                opacityValuePercentage: `${newValue}%`,
-              });
-            }}
-            aria-labelledby="continuous-slider"
-          />
-          <p>{this.state.opacityValueLevel}</p>
-        </div>
-        <div>
-          <h1 style={styles.selectedMapHeader}>{this.state.selectedMap}</h1>
-          <div id="buttonsDiv" style={styles.buttonContainer}>
-            <MapButton
-              title="RunOff"
-              mapStyleLink="mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2"
-              changeMap={this.changeMap}
-            />
-            <MapButton
-              title="Recharge"
-              mapStyleLink="mapbox://styles/kanakahacks/ckkj3885701qs18lcfdyms3k0"
-              changeMap={this.changeMap}
-            />
-            <MapButton
-              title="Interception"
-              mapStyleLink="mapbox://styles/kanakahacks/ckkj4fpf902h617o0nbcyy6yi"
-              changeMap={this.changeMap}
-            />
-            <MapButton
-              title="ET"
-              mapStyleLink="mapbox://styles/kanakahacks/ckkj59vqf1if617lnmh73qaj1"
-              changeMap={this.changeMap}
-            />
-            <MapButton
-              title="Rainfall"
-              mapStyleLink="mapbox://styles/kanakahacks/ckkj69k4b111k17mn3wz0071p"
-              changeMap={this.changeMap}
-            />
+        <div style={styles.rightColumn}>
+          <div>
+            <h1 style={styles.selectedMapHeader}>{this.state.selectedMap}</h1>
           </div>
 
-          <MapRadio changeMap={this.changeMap} selectedMap={this.state.selectedMap} />
+          <div>
+            <MapRadio changeMap={this.changeMap} selectedMap={this.state.selectedMap} />
+          </div>
+          <br></br>
+
+          <div style={styles.sliderContainer}>
+            <Slider
+              value={this.state.opacityValueLevel}
+              onChange={(event, newValue) => {
+                this.setState({
+                  opacityValueLevel: newValue,
+                  opacityValuePercentage: `${newValue}%`,
+                });
+              }}
+              aria-labelledby="continuous-slider"
+            />
+            <p style={styles.opacityLevel}>Opacity Level: {this.state.opacityValueLevel}</p>
+          </div>
+
         </div>
       </div>
     );

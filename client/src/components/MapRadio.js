@@ -5,13 +5,18 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio"
 
+const styles = {
+    radioContainer: {
+        
+    }
+}
+
 export default class MapRadio extends Component {
     constructor(props){
         super(props)
         this.handleChange = this.handleChange.bind(this)
     }
     handleChange(e){
-        console.log("something", e.target.value)
         switch(e.target.value){
             case "Runoff":
                 this.props.changeMap("Runoff", "mapbox://styles/kanakahacks/ckkex8tti0fni17qpb5vhmjd2")
@@ -34,10 +39,10 @@ export default class MapRadio extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={styles.radioContainer}>
                 <FormControl component="fieldset">
-                    <FormLabel component="legend">Gender</FormLabel>
-                    <RadioGroup aria-label="gender" name="gender1" value={this.props.selectedMap} onChange={this.handleChange}>
+                    <FormLabel component="legend">Maps</FormLabel>
+                    <RadioGroup aria-label="Maps" name="mapRadio" value={this.props.selectedMap} onChange={this.handleChange}>
                         <FormControlLabel value="Runoff" control={<Radio />} label="Runoff" />
                         <FormControlLabel value="Recharge" control={<Radio />} label="Recharge" />
                         <FormControlLabel value="Interception" control={<Radio />} label="Interception" />
