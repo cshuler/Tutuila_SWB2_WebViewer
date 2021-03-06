@@ -19,10 +19,7 @@ export default function NavigationBar (){
                             <Nav.Link href="/background" eventKey="background" >Background</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href="/about" eventKey="about" >About</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href="/instruction" eventKey="instruction" >Instruction</Nav.Link>
+                            <Nav.Link href="/about" eventKey="about" >AboutApp</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar>

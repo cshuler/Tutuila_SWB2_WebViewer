@@ -10,12 +10,13 @@ const styles = {
     },
 }
 
-export class About extends Component {
+export class AboutThisApp extends Component {
     render() {
         return (
             <div style={styles.container}>
                 <div style={styles.header}>
-                    <h3>About This Website</h3>
+                    <h3>About This APP</h3>
+                    <h4>instructions</h4>
                 </div>
                 <div>
                     <h5>Website Authors</h5>
@@ -43,4 +44,4 @@ export class About extends Component {
     }
 }
 
-export default About
+export default AboutThisApp
