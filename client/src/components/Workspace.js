@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ReactMapGL from "react-map-gl";
 import Slider from "@material-ui/core/Slider";
-import "./MyMap.css";
 
 import PieChartMap from "./PieChartMap";
 import MapRadio from "./MapRadio"
