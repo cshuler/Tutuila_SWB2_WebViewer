@@ -108,7 +108,7 @@ export default class Workspace extends Component {
 
         <div style={styles.rightColumn}>
           <div>
-            <h1 style={styles.selectedMapHeader}>{this.state.selectedMap}</h1>
+            <h3 style={styles.selectedMapHeader}>{this.state.selectedMap}</h3>
           </div>
 
           <div>
