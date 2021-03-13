@@ -215,13 +215,14 @@ export default class PieChartMap extends Component {
     });
   }
   render() {
+    console.log(this.state.rainFallAverage)
     return (
       <div style={styles.pieContainer}>
         <PieChart
           data={this.state.pieDataArray}
           lineWidth={40}
           label={({ dataEntry }) =>
-            `${dataEntry.title}: ${dataEntry.percentage}`
+            dataEntry.value !== 0 ? `${dataEntry.title}: ${dataEntry.percentage}` : null
           }
           labelStyle={{
             ...styles.pieChartFont,
@@ -231,10 +232,11 @@ export default class PieChartMap extends Component {
           radius={42}
           labelPosition={100}
         />
-        <PieChart 
+        <PieChart
           data={this.state.pieDataArray}
           label={({ dataEntry }) =>
-            `${dataEntry.title}: ${dataEntry.percentage}`
+
+            dataEntry.value !== 0 ? `${dataEntry.title}: ${dataEntry.percentage}` : null
           }
           labelStyle={{
             ...styles.pieChartFont,
@@ -245,11 +247,11 @@ export default class PieChartMap extends Component {
         />
 
         <div style={styles.averagesContainer}>
-          <p> {Number(this.state.rainFallAverage).toFixed(2)} Rainfall average</p>
-          <p> {Number(this.state.runOffAverage).toFixed(2)} runOff average</p>
-          <p> {Number(this.state.rechargeAverage).toFixed(2)} recharge average</p>
-          <p> {Number(this.state.interceptionAverage).toFixed(2)} interception average</p>
-          <p> {Number(this.state.ETAverage).toFixed(2)} ET average</p>
+          <p> {Number(this.state.rainFallAverage).toFixed(2) !== "NaN" ? Number(this.state.rainFallAverage).toFixed(2) : "0"} Rainfall average</p>
+          <p> {Number(this.state.runOffAverage).toFixed(2) !== "NaN" ? Number(this.state.runOffAverage).toFixed(2) : "0"} runOff average</p>
+          <p> {Number(this.state.rechargeAverage).toFixed(2)!== "NaN" ? Number(this.state.rechargeAverage).toFixed(2) : "0"} recharge average</p>
+          <p> {Number(this.state.interceptionAverage).toFixed(2)!== "NaN" ? Number(this.state.interceptionAverage).toFixed(2) : "0"} interception average</p>
+          <p> {Number(this.state.ETAverage).toFixed(2)!== "NaN" ? Number(this.state.ETAverage).toFixed(2) : "0"} ET average</p>
         </div>
       </div>
     );
