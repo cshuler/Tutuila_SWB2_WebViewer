@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactMapGL from "react-map-gl";
 import Slider from "@material-ui/core/Slider";
+import {Button} from "react-bootstrap"
 
 import PieChartMap from "./PieChartMap";
 import MapRadio from "./MapRadio"
@@ -68,16 +69,31 @@ export default class Workspace extends Component {
       opacityValueLevel: 100,
       opacityValuePercentage: "100%",
       pieDataArray: [],
+      gifts: []
     };
     this.changeMap = this.changeMap.bind(this);
+    this.addGift = this.addGift.bind(this);
   }
 
   changeMap(selectedMap, mapStylingStyle) {
     this.setState({ selectedMap, mapStylingStyle });
   }
+  addGift() {
+    const {gifts} = this.state
+
+    const ids = this.state.gifts.map(gift => gift.id)
+
+    const max_id = ids.length > 0 ? Math.max(...ids) : 0
+
+    gifts.push({ id: max_id + 1 })
+    this.setState({ gifts })
+  }
   render() {
     return (
       <div style={styles.workSpaceContainer}>
+        <Button className="btn-add" onClick={this.addGift}>
+          Add Gift
+        </Button>
         <div>
           <PieChartMap viewport={this.state.viewport} />
         </div>

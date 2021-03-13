@@ -15,7 +15,7 @@
     "leaflet": "^1.7.1",
     "materialize-css": "^1.0.0",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.4.3",
+    "react-bootstrap": "^1.5.2",
     "react-leaflet": "^3.0.2",
     "react-map-gl": "^5.2.5",
     "react-materialize": "^3.9.5",
