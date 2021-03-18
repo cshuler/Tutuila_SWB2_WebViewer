@@ -215,7 +215,6 @@ export default class PieChartMap extends Component {
     });
   }
   render() {
-    console.log(this.state.rainFallAverage)
     return (
       <div style={styles.pieContainer}>
         <PieChart
