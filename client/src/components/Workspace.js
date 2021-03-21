@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactMapGL from "react-map-gl";
-import Slider from "@material-ui/core/Slider";
+import { Slider } from '@material-ui/core';
+import Modal from './WorkspaceModal'
 
 import PieChartMap from "./PieChartMap";
 import MapRadio from "./MapRadio";
@@ -68,12 +69,21 @@ export default class Workspace extends Component {
       opacityValueLevel: 100,
       opacityValuePercentage: "100%",
       pieDataArray: [],
-      gifts: []
+      gifts: [],
+      modalIsOpen: true
     };
     this.changeMap = this.changeMap.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this)
+    this.handleCloseModal = this.handleCloseModal.bind(this)
   }
   changeMap(selectedMap, mapStylingStyle) {
     this.setState({ selectedMap, mapStylingStyle });
+  }
+  handleOpenModal () {
+    this.setState({modalIsOpen: true})
+  }
+  handleCloseModal () {
+    this.setState({modalIsOpen: false})
   }
   render() {
     return (
@@ -81,6 +91,9 @@ export default class Workspace extends Component {
         <div>
           <PieChartMap viewport={this.state.viewport} />
         </div>
+
+        <Modal modalIsOpen={this.state.modalIsOpen} handleOpen={this.handleOpenModal} handleClose={this.handleCloseModal} />
+
         <div style={styles.mapCpontainer}>
           <ReactMapGL
             {...this.state.viewport}
