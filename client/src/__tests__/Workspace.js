@@ -24,9 +24,3 @@ it('initializes the `state`', () => {
     expect(workspace.state().pieDataArray).toEqual([])
     expect(workspace.state().gifts).toEqual([])
 }); 
-
-it('adds one more', () => {
-  workspace.find('.btn-add').simulate('click')
-
-  expect(workspace.state().gifts).toEqual([{ id: 1 }])
-})
