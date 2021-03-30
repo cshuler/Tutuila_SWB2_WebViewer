@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Checkbox, Modal, Backdrop, Fade } from '@material-ui/core'
+import { Checkbox, Modal, Backdrop, Fade, Button } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -19,25 +19,23 @@ const useStyles = makeStyles((theme) => ({
 export default function TransitionsModal() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
-    const [checked, setChecked] = React.useState(true);
+    const [checked, setChecked] = React.useState(false);
 
     const handleOpen = () => {
         setOpen(true);
     };
 
     const handleClose = () => {
-        // setOpen(false);
+        setOpen(false);
     };
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
     };
 
+
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
-                react-transition-group
-      </button>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -52,14 +50,16 @@ export default function TransitionsModal() {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title">Transition modal</h2>
-                        <p id="transition-modal-description">react-transition-group animates me.</p>
+                        <h2 id="transition-modal-title">CONDITIONS OF USE</h2>
+                        <p id="transition-modal-description">All content and results are in the public domain and may be used freely, with appropriate credit given to this website.</p>
                         <Checkbox
                             checked={checked}
                             onChange={handleChange}
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
-                        You agree
+                        I have read and understand the conditions of use
+                        <br></br>
+                        {checked ? <Button variant="contained" color="primary" onClick={handleClose}>Continue</Button>: <Button variant="contained" disabled>Continue</Button>}
                     </div>
                 </Fade>
             </Modal>
