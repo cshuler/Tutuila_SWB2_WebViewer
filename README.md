@@ -15,6 +15,10 @@ npm i
 to start server on local storage
 npm run dev 
 
+Rendering the Map
+- the map needs the the mapbox token
+- go into the config file and the config files like the examples
+
 
 # Making Edits
 
