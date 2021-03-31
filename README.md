@@ -17,7 +17,9 @@ npm run dev
 
 Rendering the Map
 - the map needs the the mapbox token
-- go into the config file and the config files like the examples
+- create a file in the config folder titled as dev.js
+- follow the example.js to set up the dev.js
+- get the mapbox token from the mapbox website
 
 
 # Making Edits
