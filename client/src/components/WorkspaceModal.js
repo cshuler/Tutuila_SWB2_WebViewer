@@ -51,7 +51,9 @@ export default function TransitionsModal() {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         <h2 id="transition-modal-title">CONDITIONS OF USE</h2>
-                        <p id="transition-modal-description">All content and results are in the public domain and may be used freely, with appropriate credit given to this website.</p>
+                        <p id="transition-modal-description">The Tutuila Groundwater Recharge Tool was developed through collaboration the University of Hawai’i Water Resources research center, and the Ike Wai and Pacific RISA projects. It is provided as a Research tool and service to the public. Users are responsible for understanding the background and limitations of the Tool. Users are responsible for evaluating the appropriateness of the Tool for their objectives. Although the data displayed by the tool has been subjected to peer review, we reserve the right to update the web interface as needed pursuant to further analysis and review. No warranty, expressed or implied, is made by the University of Hawaii, the U.S. Government, or the State of Hawai’i as to the functionality of the web interface and related material, nor shall the fact of release constitute any such warranty. Furthermore, the Tutuila Groundwater Recharge Tool is released on condition that neither the University of Hawaii, the U.S. Government, nor the State of Hawai’i shall be held liable for any damages resulting from its authorized or unauthorized use. All content and results are in the public domain and may be used freely, with appropriate credit given to this website.</p>
+
+                        <p>Data citation: Shuler, C., Brewington, L., & El-Kadi, A. I. (2021). A participatory approach to assessing groundwater recharge under future climate and land-cover scenarios, Tutuila, American Samoa. Journal of Hydrology: Regional Studies, 34, 100785.</p>
                         <Checkbox
                             checked={checked}
                             onChange={handleChange}

@@ -189,13 +189,13 @@ export default class PieChartMap extends Component {
           color: "#01BDD3",
         },
         {
-          title: `Int.`,
+          title: `int.`,
           value: interceptionGridCodeTotal,
           percentage: `${InterceptionPercentage}%`,
           color: "#71F523",
         },
         {
-          title: `Recharge`,
+          title: `recharge`,
           value: rechargeGridCodeTotal,
           percentage: `${rechargePercentage}%`,
           color: "#78BCED",
@@ -217,20 +217,7 @@ export default class PieChartMap extends Component {
   render() {
     return (
       <div style={styles.pieContainer}>
-        <PieChart
-          data={this.state.pieDataArray}
-          lineWidth={40}
-          label={({ dataEntry }) =>
-            dataEntry.value !== 0 ? `${dataEntry.title}: ${dataEntry.percentage}` : null
-          }
-          labelStyle={{
-            ...styles.pieChartFont,
-          }}
-          animate={true}
-          viewBoxSize={[125, 125]}
-          radius={42}
-          labelPosition={100}
-        />
+
         <PieChart
           data={this.state.pieDataArray}
           label={({ dataEntry }) =>
@@ -240,7 +227,7 @@ export default class PieChartMap extends Component {
           labelStyle={{
             ...styles.pieChartFont,
           }}
-          labelPosition={80}
+          labelPosition={70}
           animate={true}
           viewBoxSize={[125, 125]}
         />
