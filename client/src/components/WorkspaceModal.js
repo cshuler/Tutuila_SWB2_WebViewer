@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, StylesProvider } from "@material-ui/core/styles";
 import { Checkbox, Modal, Backdrop, Fade, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -7,6 +7,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    paddingLeft: 30, 
+    paddingRight: 30
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
@@ -40,14 +42,13 @@ export default function TransitionsModal() {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
-        onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={open} >
           <div className={classes.paper}>
             <div>
               <h2 id="transition-modal-title">CONDITIONS OF USE</h2>
