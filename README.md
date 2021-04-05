@@ -2,7 +2,7 @@
 
 
 Project Premise: 
-The existing Oahu GW Recharge Viewer (OGWRV) is a valuable decision support tool. In American Samoa existing water budget models have been developed, but not yet been presented to the public and decision makers via an online format. Therefore we will modify the user-interface framework built for the OGWRV to be applied to create a valuable product to support water resource management in American Samoa.
+Understanding the distribution of groundwater recharge is important for water resources managers in making informed decisions. However, models that predict groundwater recharge typicall generate outputs that are complicated and are in formats that are not user friendly for managers.  In American Samoa existing water budget models have been developed, but not yet been presented to the public and decision makers via a decision support tool that follows methodology from other similar tools such as the Oahu Groundwater Recharge Viewer. This tool will create a valuable product to support water resource management in American Samoa.
 
 to just see the project loaded on local
 
