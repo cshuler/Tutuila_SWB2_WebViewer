@@ -26,12 +26,9 @@ const styles = {
     justifyContent: "center",
   },
   pieChartContainer: {
-    width: 200,
-    height: 200,
     display: "flext",
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 10,
   },
   sliderContainer: {
     width: 100,
@@ -124,8 +121,8 @@ export default class Workspace extends Component {
   render() {
     return (
       <div style={styles.workSpaceContainer}>
-        <div>
-          <PieChartMap viewport={this.state.viewport} />
+        <div >
+          <PieChartMap viewport={this.state.viewport} style={styles.pieChartContainer} />
         </div>
 
         <Modal
