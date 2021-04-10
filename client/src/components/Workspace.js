@@ -98,7 +98,7 @@ export default class Workspace extends Component {
   }
   renderLegend() {
 
-    let theLegend = null 
+    let theLegend = null
 
     if (this.state.selectedMap === "Runoff") {
       theLegend = runOffLegend;
@@ -159,7 +159,12 @@ export default class Workspace extends Component {
             </ReactMapGL>
             <br></br>
           </div>
-          <div style={styles.legendImg}>{this.renderLegend()}</div>
+          <div style={styles.legendImg}>
+            {this.renderLegend()}
+          </div>
+          <div style={styles.legendImg}>
+            <p><strong>All units are in inches</strong></p>
+          </div>
         </div>
 
         <div style={styles.rightColumn}>
