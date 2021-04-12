@@ -12,7 +12,7 @@ Understanding the distribution of groundwater recharge is important for water re
 5) Name the token, your preference (e.g. "dev")
 6) Make sure all "Public scopes" are checked, leave all secret scopes unchecked, leave "URL" blank, 
 7) Click "Create token"
-8) Copy the access token. it looks like this:
+8) Copy the access token. It looks like this:
 
 ```bash
 pk.eyJ1Ijoia2FuYWthaGFja2ODg2MDIwOTJ3cnpmZ21yaGx4MSJ9.ZHCcUo
@@ -40,7 +40,7 @@ touch dev.js
 ```
 
 13) Setup dev.js file like so: 
-```javascript
+```python
 module.exports ={
     REACT_APP_MAPBOX_ACCESS_TOKEN: "PASTE ACCESS TOKEN HERE"
 }
@@ -48,7 +48,7 @@ module.exports ={
 
 14) In the dev.js file, paste the mapbox access token you copied earlier where it says "PASTE ACCESS TOKEN". Be sure that the access token is a string. (quotes on the outside)
 
-15) Go to root directory.
+15) Go to root directory. ~./
 ```bash
 cd ../../
 ```
