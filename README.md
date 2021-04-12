@@ -11,8 +11,8 @@ Understanding the distribution of groundwater recharge is important for water re
 4) Click the "Create a token" button
 5) Name the token, your preference (e.g. "dev")
 6) Make sure all "Public scopes" are checked, leave all secret scopes unchecked, leave "URL" blank, 
-7) click "Create token"
-8) copy the access token. it looks like this:
+7) Click "Create token"
+8) Copy the access token. it looks like this:
 
 ```bash
 pk.eyJ1Ijoia2FuYWthaGFja2ODg2MDIwOTJ3cnpmZ21yaGx4MSJ9.ZHCcUo
