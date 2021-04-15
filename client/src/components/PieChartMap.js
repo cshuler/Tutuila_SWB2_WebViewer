@@ -232,14 +232,14 @@ export default class PieChartMap extends Component {
           viewBoxSize={[125, 125]}
         />
 
-        <p><strong>All units are in inches</strong></p>
+        <h6><strong>All units are in inches</strong></h6>
 
         <div style={styles.averagesContainer}>
-          <p> {Number(this.state.rainFallAverage).toFixed(2) !== "NaN" ? Number(this.state.rainFallAverage).toFixed(2) : "0"} Rainfall average</p>
-          <p> {Number(this.state.runOffAverage).toFixed(2) !== "NaN" ? Number(this.state.runOffAverage).toFixed(2) : "0"} runOff average</p>
-          <p> {Number(this.state.rechargeAverage).toFixed(2)!== "NaN" ? Number(this.state.rechargeAverage).toFixed(2) : "0"} recharge average</p>
-          <p> {Number(this.state.interceptionAverage).toFixed(2)!== "NaN" ? Number(this.state.interceptionAverage).toFixed(2) : "0"} interception average</p>
-          <p> {Number(this.state.ETAverage).toFixed(2)!== "NaN" ? Number(this.state.ETAverage).toFixed(2) : "0"} ET average</p>
+          <p> <strong>{Number(this.state.rainFallAverage).toFixed(2) !== "NaN" ? Number(this.state.rainFallAverage).toFixed(2) : "0"} </strong> Rainfall average</p>
+          <p> <strong>{Number(this.state.runOffAverage).toFixed(2) !== "NaN" ? Number(this.state.runOffAverage).toFixed(2) : "0"} </strong> Run Off average</p>
+          <p> <strong>{Number(this.state.rechargeAverage).toFixed(2)!== "NaN" ? Number(this.state.rechargeAverage).toFixed(2) : "0"} </strong> Recharge average</p>
+          <p> <strong>{Number(this.state.interceptionAverage).toFixed(2)!== "NaN" ? Number(this.state.interceptionAverage).toFixed(2) : "0"} </strong> Interception average</p>
+          <p> <strong>{Number(this.state.ETAverage).toFixed(2)!== "NaN" ? Number(this.state.ETAverage).toFixed(2) : "0"} </strong> E.T. average</p>
         </div>
 
       </div>
