@@ -232,7 +232,7 @@ export default class PieChartMap extends Component {
           viewBoxSize={[125, 125]}
         />
 
-        <h6><strong>All units are in inches</strong></h6>
+        <h6><strong><u>All units are in inches</u></strong></h6>
 
         <div style={styles.averagesContainer}>
           <p> <strong>{Number(this.state.rainFallAverage).toFixed(2) !== "NaN" ? Number(this.state.rainFallAverage).toFixed(2) : "0"} </strong> Rainfall average</p>
