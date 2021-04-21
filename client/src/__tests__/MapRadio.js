@@ -28,5 +28,9 @@ const wrapper
   );  
 
 it('changes the selectedMap state', () => {
-
+  //reads the this.props.selectedMap = to the initial state of the parent (Runoff)
+  
+  //clicks formcontrolLabel 
+  //onChange the parent state
+  //takes in a new this.props.selectedMap value
 })

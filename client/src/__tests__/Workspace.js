@@ -23,4 +23,5 @@ it('initializes the `state`', () => {
     expect(workspace.state().opacityValuePercentage).toEqual('100%')
     expect(workspace.state().pieDataArray).toEqual([])
     expect(workspace.state().gifts).toEqual([])
+    expect(workspace.state().modalIsOpen).toEqual(true)
 }); 
