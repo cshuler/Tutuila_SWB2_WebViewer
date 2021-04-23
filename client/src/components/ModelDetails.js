@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import tut_map from '../assets/Fig1.jpg';
-import scematic from '../assets/scematic.JPG';
-import imps from '../assets/input_datas.png';
 import TutImageModal from './ImageModal/TutImageModal'
+import ScematicModal from './ImageModal/ScematicModal'
+import InputDatasetsModal from './ImageModal/InputDatasetsModal'
 
 const styles = {
     modelHeader: {
@@ -15,7 +14,8 @@ const styles = {
     mapImageContainer: {
         marginLeft: "auto",
         marginRight: "auto",
-        width: "300"
+        width: "300", 
+        textAlign:'center'
     }
 }
 
@@ -48,7 +48,7 @@ export class ModelDetails extends Component {
 
                         <div className="row">
                             <div className="map" style={styles.mapImageContainer}>
-                                <TutImageModal src={tut_map}/>                             
+                                <TutImageModal />                             
                                 <i>Map of Tutuila Island</i>
                             </div>
                         </div>
@@ -62,10 +62,9 @@ export class ModelDetails extends Component {
                         [note: how do I make these pop open as "read more" boxes?]
                         <p>In this study we used a water budget approach by applying the SWB2 model, a soil water-balance model developed by the US Geological Survey (USGS) to the Island of Tutuila in American Samoa, under average present-day climate conditions. The model was used to create a high-resolution groundwater recharge coverage for the whole island, as well as estimating other components such as evapotranspiration (ET), canopy interception, surface runoff, and mountain front recharge in gridded formats (Fig. 2). Additionally, the potential effects of future climate change on water resources availability were simulated by integrating dynamically downscaled climate predictions for 2080 to 2099 derived from externally supplied global climate model results. Notable improvements in this model over previously developed water budget models for Tutuila include flow-routing based on land topography, inclusion of the mountain front recharge process, and consideration of direct net infiltration from anthropogenic sources such as on-site wastewater units and leaking water delivery lines. </p>
 
-                        <div className="row">
+                        <div className="row" style={{display:'flex'}}>
                             <div className="scematic" style={styles.mapImageContainer}>
-                                <img src={scematic} width="300" height="400" alt='scematic' />
-                                <br></br>
+                                <ScematicModal />
                                 <p><i>Diagram illustrating factors used to ~{"\n"}
                               calculate water balance for Tutuila.</i></p>
                             </div>
@@ -81,8 +80,7 @@ export class ModelDetails extends Component {
 
                         <div className="row">
                             <div className="imps" style={styles.mapImageContainer}>
-                                <img src={imps} width="300" height="600" alt="imps" />
-                                <br></br>
+                                <InputDatasetsModal/>
                                 <p><i>Input datasets</i></p>
                             </div>
                         </div>
