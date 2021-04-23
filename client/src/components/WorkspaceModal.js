@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles, StylesProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Checkbox, Modal, Backdrop, Fade, Button } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,10 +22,6 @@ export default function TransitionsModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [checked, setChecked] = React.useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleClose = () => {
     setOpen(false);
