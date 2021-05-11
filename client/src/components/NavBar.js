@@ -34,7 +34,7 @@
 
 import React from 'react'
 import { Menu } from 'antd';
-import { MailOutlined } from '@ant-design/icons';
+import { HomeOutlined, SettingFilled, InfoCircleOutlined, UserOutlined, BlockOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 
 const { SubMenu } = Menu;
@@ -53,14 +53,29 @@ export default class NavigationBar extends React.Component {
     const { current } = this.state;
     return (
       <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
-        <Menu.Item key="home" icon={<MailOutlined />}>
+        <Menu.Item key="home" icon={<HomeOutlined />}>
             <a href="/" >
           Home
             </a>
         </Menu.Item>
-        <Menu.Item key="workspace">
+        <Menu.Item key="workspace" icon={<SettingFilled />}>
           <a href="/workspace">
             Workspace
+          </a>
+        </Menu.Item>
+        <Menu.Item key="modeldetails" icon={<InfoCircleOutlined />}>
+          <a href="/modeldetails">
+            Model Details
+          </a>
+        </Menu.Item>
+        <Menu.Item key="background" icon={<BlockOutlined />}>
+          <a href="/background">
+            Background
+          </a>
+        </Menu.Item>
+        <Menu.Item key="about" icon={<UserOutlined />}>
+          <a href="/about">
+            About
           </a>
         </Menu.Item>
 
