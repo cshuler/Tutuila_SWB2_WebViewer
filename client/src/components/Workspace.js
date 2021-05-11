@@ -3,7 +3,7 @@ import ReactMapGL from "react-map-gl";
 import { Slider } from "@material-ui/core";
 import Modal from "./WorkspaceModal";
 
-import PieChartMap from "./PieChartMap";
+//import PieChartMap from "./PieChartMap";
 import MapRadio from "./MapRadio";
 
 import runOffLegend from "../assets/runOffLegend.png";
@@ -121,9 +121,9 @@ export default class Workspace extends Component {
   render() {
     return (
       <div style={styles.workSpaceContainer}>
-        <div >
+        {/* <div >
           <PieChartMap viewport={this.state.viewport} style={styles.pieChartContainer} />
-        </div>
+        </div> */}
 
         <Modal
           modalIsOpen={this.state.modalIsOpen}
