@@ -87,6 +87,7 @@ export default class Workspace extends Component {
     this.renderLegend = this.renderLegend.bind(this)
     this.handleZoomIn = this.handleZoomIn.bind(this)
     this.handleZoomOut = this.handleZoomOut.bind(this)
+    this.handleZoomReset = this.handleZoomReset.bind(this)
   }
   changeMap(selectedMap, mapStylingStyle) {
     this.setState({ selectedMap, mapStylingStyle });
@@ -106,6 +107,11 @@ export default class Workspace extends Component {
     var viewport = this.state.viewport
     viewport.zoom = viewport.zoom - 1
     this.setState({ viewport })
+  }
+  handleZoomReset(){
+    var viewport = this.state.viewport
+    viewport.zoom = 10.5
+    this.setState({viewport})
   }
   renderLegend() {
 
@@ -174,6 +180,7 @@ export default class Workspace extends Component {
             <div style={{position: "absolute", top:"5px", right:"5px" }}>
               <Button onClick={this.handleZoomIn}>+</Button>
               <Button onClick={this.handleZoomOut}>-</Button>
+              <Button onClick={this.handleZoomReset}>R</Button>
             </div>
             <br></br>
           </div>
