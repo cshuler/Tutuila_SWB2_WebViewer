@@ -111,6 +111,8 @@ export default class Workspace extends Component {
   handleZoomReset(){
     var viewport = this.state.viewport
     viewport.zoom = 10.5
+    viewport.latitude = -14.3
+    viewport.longitude = -170.7
     this.setState({viewport})
   }
   renderLegend() {
