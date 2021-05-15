@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import ReactMapGL from "react-map-gl";
 import { Slider } from "@material-ui/core";
 import Modal from "./WorkspaceModal";
+import { Button } from "antd";
 
-//import PieChartMap from "./PieChartMap";
+import PieChartMap from "./PieChartMap";
 import MapRadio from "./MapRadio";
 
 import runOffLegend from "../assets/runOffLegend.png";
@@ -24,6 +25,7 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    position: "relative",
   },
   pieChartContainer: {
     display: "flext",
@@ -83,6 +85,8 @@ export default class Workspace extends Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.renderLegend = this.renderLegend.bind(this)
+    this.handleZoomIn = this.handleZoomIn.bind(this)
+    this.handleZoomOut = this.handleZoomOut.bind(this)
   }
   changeMap(selectedMap, mapStylingStyle) {
     this.setState({ selectedMap, mapStylingStyle });
@@ -92,6 +96,16 @@ export default class Workspace extends Component {
   }
   handleCloseModal() {
     this.setState({ modalIsOpen: false });
+  }
+  handleZoomIn() {
+    var viewport = this.state.viewport
+    viewport.zoom = viewport.zoom + 1
+    this.setState({ viewport })
+  }
+  handleZoomOut(e) {
+    var viewport = this.state.viewport
+    viewport.zoom = viewport.zoom - 1
+    this.setState({ viewport })
   }
   renderLegend() {
 
@@ -121,9 +135,9 @@ export default class Workspace extends Component {
   render() {
     return (
       <div style={styles.workSpaceContainer}>
-        {/* <div >
+        <div >
           <PieChartMap viewport={this.state.viewport} style={styles.pieChartContainer} />
-        </div> */}
+        </div>
 
         <Modal
           modalIsOpen={this.state.modalIsOpen}
@@ -137,6 +151,8 @@ export default class Workspace extends Component {
               {...this.state.viewport}
               maxZoom={18}
               minZoom={10.5}
+              showCompass={true}
+              showZoom={true}
               mapboxApiAccessToken={REACT_APP_MAPBOX_ACCESS_TOKEN}
               onViewportChange={(newViewport) => {
                 this.setState({ viewport: newViewport });
@@ -152,8 +168,13 @@ export default class Workspace extends Component {
                 // onMouseUp={this.check}
                 mapStyle={this.state.mapStylingStyle}
                 style={{ opacity: this.state.opacityValuePercentage }}
-              ></ReactMapGL>
+              >
+              </ReactMapGL>
             </ReactMapGL>
+            <div style={{position: "absolute", top:"5px", right:"5px" }}>
+              <Button onClick={this.handleZoomIn}>+</Button>
+              <Button onClick={this.handleZoomOut}>-</Button>
+            </div>
             <br></br>
           </div>
           <div style={styles.legendImg}>

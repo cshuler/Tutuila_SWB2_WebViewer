@@ -37,8 +37,6 @@ import { Menu } from 'antd';
 import { HomeOutlined, SettingFilled, InfoCircleOutlined, UserOutlined, BlockOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css'
 
-const { SubMenu } = Menu;
-
 export default class NavigationBar extends React.Component {
   state = {
     current: 'mail',
