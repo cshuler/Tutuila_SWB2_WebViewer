@@ -20,24 +20,19 @@ export class AboutThisApp extends Component {
                 </div>
                 <div>
                     <h5>Website Authors</h5>
+                    <p>chris</p>
+                    <p>kainoa   </p>
                     <p>name</p>
-                    <p>name</p>
-                    <p>name</p>
+
                 </div>
                 <div>
                     <h5>Citation Information</h5>
-                    <p>content</p>
+                    <p>chicago style citation</p>
                     <p>content</p>
                 </div>
                 <div>
-                    <h5>Related Publications</h5>
-                    <p>publishcations</p>
-                    <p>publishcations</p>
-                    <p>publishcations</p>
-                </div>
-                <div>
-                    <h5>Acknowledgements</h5>
-                    <p>About Body</p>
+                    <h4>instructions how to use this app</h4>
+                    <h3>how this app was built</h3>
                 </div>
             </div>
         )
