@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const CONFIG = require('./config/config_prod.json')
+
 
 // app.get('/', (req,res) => {
 //     res.send({ hi: 'there'})
