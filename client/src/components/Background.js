@@ -18,6 +18,8 @@ export class Background extends Component {
                     <h3>Background</h3>
                 </div>
                <p>content</p> 
+               <h3>related publications</h3>
+               <h3>acknowledgements</h3>
             </div>
         )
     }
